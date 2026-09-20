@@ -6,7 +6,7 @@
 
 **Сайт:** https://berik2001.github.io/batyrlar/ · первая, статическая версия — https://berik2001.github.io/batyrlar/classic/
 
-![Главная страница: 3D-круг портретов батыров под шаңырақом](docs/screenshots/hero.jpg)
+![Главная страница: 3D-круг портретов батыров](docs/screenshots/hero.jpg)
 
 | Каталог | Страница батыра |
 | --- | --- |

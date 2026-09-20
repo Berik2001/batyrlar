@@ -14,7 +14,6 @@ import { BackSide, type Group } from "three";
 import type { Batyr } from "@/data/batyrs";
 import { useApp } from "@/lib/store";
 import { BatyrRing } from "./BatyrRing";
-import { Shanyraq } from "./Shanyraq";
 import { asset } from "@/lib/asset";
 
 /** Палитра сцены: днём светлая степь, в тёмной теме — закатная. */
@@ -182,7 +181,6 @@ export default function HeroScene({ batyrs }: { batyrs: Batyr[] }) {
         <SteppeSky src={palette.sky} />
         <Floor simple={lowPower} palette={palette} />
         <BatyrRing batyrs={ring} frameColor={palette.frame} />
-        <Shanyraq color={palette.frame} />
         <Sparkles
           count={lowPower ? 40 : 120}
           scale={[16, 7, 16]}
