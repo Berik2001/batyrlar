@@ -1,0 +1,19 @@
+# Зависимости и сборка
+node_modules/
+.next/
+out/
+build/
+dist/
+
+# Переменные окружения: .env.example в репозитории, реальные ключи — нет
+.env
+.env*.local
+
+# Система и редакторы
+.DS_Store
+*.log
+.vscode/
+.idea/
+
+# Python
+__pycache__/

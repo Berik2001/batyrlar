@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="kk" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Медиа — Batyrlar.com</title>
+  <meta name="description" content="Батырлар галереясы: арт, портреттер, ою-өрнектер. Галерея Batyrlar.com.">
+  <meta name="theme-color" content="#faf6ef">
+  <script>try{document.documentElement.dataset.theme=localStorage.getItem("batyrlar.theme")||"light"}catch(e){document.documentElement.dataset.theme="light"}</script>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 100'%3E%3Crect width='120' height='100' fill='%230b0a09'/%3E%3Cg fill='none' stroke='%23d6aa5c' stroke-width='8' stroke-linecap='round'%3E%3Cpath d='M60 94V58C60 30 34 20 20 34C8 46 18 66 34 60C46 55 42 40 32 42M60 58C60 30 86 20 100 34C112 46 102 66 86 60C74 55 78 40 88 42'/%3E%3C/g%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <script type="module" src="js/pages/media.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main" data-i18n="a11y.skip">Мазмұнға өту</a>
+  <header data-site-header data-page="media"></header>
+
+  <main id="main">
+    <section class="page-hero">
+      <svg class="page-hero__orn" aria-hidden="true"><use href="#orn-rosette"/></svg>
+      <div class="container page-hero__inner">
+        <p class="eyebrow" data-i18n="page.media.eyebrow">Медиа</p>
+        <h1 class="page-hero__title" data-i18n="page.media.title">Галерея</h1>
+        <p class="page-hero__lead" data-i18n="page.media.lead"></p>
+      </div>
+      <div class="ornament-band" aria-hidden="true"></div>
+    </section>
+
+    <section class="section section--tight">
+      <div class="container">
+        <div class="toolbar">
+          <div class="filters" role="group" data-i18n-attr="aria-label:filter.label">
+            <button class="filter" type="button" data-filter="all" aria-pressed="true"><span data-i18n="filter.all">Барлығы</span><span class="filter__count"></span></button>
+            <button class="filter" type="button" data-filter="art" aria-pressed="false"><span data-i18n="media.cat.art">Арт</span><span class="filter__count"></span></button>
+            <button class="filter" type="button" data-filter="portrait" aria-pressed="false"><span data-i18n="media.cat.portrait">Портреттер</span><span class="filter__count"></span></button>
+            <button class="filter" type="button" data-filter="ornament" aria-pressed="false"><span data-i18n="media.cat.ornament">Ою-өрнек</span><span class="filter__count"></span></button>
+          </div>
+        </div>
+        <ul class="gallery" id="gallery" role="list"></ul>
+      </div>
+    </section>
+  </main>
+
+  <dialog class="lightbox scheme-dark" id="lightbox" data-i18n-attr="aria-label:lightbox.label">
+    <button class="lightbox__close round-btn" type="button" data-lb-close data-i18n-attr="aria-label:lightbox.close">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
+    <button class="lightbox__nav lightbox__nav--prev round-btn" type="button" data-lb-prev data-i18n-attr="aria-label:carousel.prev">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>
+    </button>
+    <div class="lightbox__stage"></div>
+    <button class="lightbox__nav lightbox__nav--next round-btn" type="button" data-lb-next data-i18n-attr="aria-label:carousel.next">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+    </button>
+    <p class="lightbox__caption"></p>
+  </dialog>
+
+  <footer data-site-footer></footer>
+</body>
+</html>

@@ -1,0 +1,163 @@
+@import "tailwindcss";
+
+/* Тёмная тема — по классу на <html>, его ставит ThemeProvider до первой отрисовки */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ==========================================================================
+   Дизайн-токены Batyrlar: тёплый пергамент + золото, второй акцент — бирюза.
+   Значения перенесены из статической версии (css/tokens.css).
+   ========================================================================== */
+@theme {
+  --color-bg: #faf6ef;
+  --color-bg-2: #f3ebdd;
+  --color-surface: #fffdf9;
+  --color-surface-2: #f7f0e4;
+  --color-line: rgba(120, 86, 40, 0.14);
+  --color-line-strong: rgba(120, 86, 40, 0.32);
+
+  --color-gold: #a2701d;
+  --color-gold-bright: #7c5210;
+  --color-gold-deep: #6b4510;
+  --color-bronze: #8a5a2b;
+  --color-ember: #b4541f;
+  --color-sky: #237a8a;
+
+  --color-ink: #1e1811;
+  --color-muted: #5c5043;
+  --color-dim: #8c7f6d;
+  --color-on-gold: #1a1208;
+
+  --font-display: var(--font-cormorant), Georgia, "Times New Roman", serif;
+  --font-body: var(--font-manrope), system-ui, -apple-system, sans-serif;
+
+  --text-hero: clamp(3.1rem, 7.4vw, 6.9rem);
+  --text-h1: clamp(2.75rem, 6vw, 4.75rem);
+  --text-h2: clamp(2.25rem, 4.4vw, 3.5rem);
+  --text-h3: clamp(1.4rem, 2.1vw, 1.7rem);
+  --text-lead: clamp(1.05rem, 1.6vw, 1.3rem);
+
+  --radius-tile: 14px;
+  --radius-card: 24px;
+
+  --ease-out-soft: cubic-bezier(0.16, 1, 0.3, 1);
+  --shadow-card: 0 1px 2px rgba(60, 38, 12, 0.05), 0 8px 24px -8px rgba(60, 38, 12, 0.12);
+  --shadow-lift: 0 2px 4px rgba(60, 38, 12, 0.06), 0 24px 48px -16px rgba(60, 38, 12, 0.24);
+}
+
+/* Тёмная палитра переопределяет те же переменные, поэтому все утилиты
+   (bg-surface, text-ink, border-line …) работают в обеих темах без dark:-дублей */
+.dark {
+  --color-bg: #0b0a09;
+  --color-bg-2: #13110e;
+  --color-surface: #1a1713;
+  --color-surface-2: #242019;
+  --color-line: rgba(214, 170, 92, 0.18);
+  --color-line-strong: rgba(214, 170, 92, 0.42);
+
+  --color-gold: #d6aa5c;
+  --color-gold-bright: #f2cf85;
+  --color-gold-deep: #a8782f;
+  --color-ember: #c8642a;
+  --color-sky: #5fb8c6;
+
+  --color-ink: #f4ede1;
+  --color-muted: #b3a893;
+  --color-dim: #8d8372;
+
+  --shadow-card: 0 12px 32px -16px rgba(0, 0, 0, 0.6);
+  --shadow-lift: 0 24px 48px -16px rgba(0, 0, 0, 0.7);
+  color-scheme: dark;
+}
+
+:root {
+  --header-h: 72px;
+  /* Фон в rgb-компонентах — для полупрозрачных вуалей поверх сцены */
+  --bg-rgb: 250 246 239;
+  /* Бумажная фактура поверх фона */
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .45 0 0 0 0 .32 0 0 0 0 .15 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --grad-gold: linear-gradient(135deg, #f2cf85 0%, #d6aa5c 45%, #a8782f 100%);
+  --grad-gold-text: linear-gradient(180deg, #b8842f 0%, #8a5a2b 55%, #5e3b12 100%);
+  color-scheme: light;
+}
+
+.dark {
+  --bg-rgb: 11 10 9;
+  --grad-gold-text: linear-gradient(180deg, #f2cf85 0%, #d6aa5c 50%, #8a5a2b 100%);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background: var(--grain), var(--color-bg);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    line-height: 1.65;
+    /* Cormorant по умолчанию рисует старостильные цифры — «10» выглядит как «IO» */
+    font-variant-numeric: lining-nums;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    line-height: 1.04;
+    letter-spacing: -0.01em;
+  }
+  ::selection {
+    background: var(--color-gold);
+    color: var(--color-on-gold);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 3px;
+  }
+}
+
+@layer components {
+  .container-page {
+    width: min(100% - clamp(32px, 8vw, 96px), 1320px);
+    margin-inline: auto;
+  }
+  /* Золотой текст-градиент для заголовков */
+  .text-gradient-gold {
+    background: var(--grad-gold-text);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .surface-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-line);
+    box-shadow: var(--shadow-card);
+  }
+  .eyebrow {
+    font-family: var(--font-body);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+  }
+}
+
+/* Lenis: плавная прокрутка отключает нативный scroll-behavior */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

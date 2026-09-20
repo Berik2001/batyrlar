@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="kk" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Batyrlar.com — Ерлер елі</title>
+  <meta name="description" content="Batyrlar.com — қазақ батырларының порталы: эпикалық және тарихи батырлар, жыр мен тарих. Портал о казахских батырах.">
+  <meta name="theme-color" content="#faf6ef">
+  <script>try{document.documentElement.dataset.theme=localStorage.getItem("batyrlar.theme")||"light"}catch(e){document.documentElement.dataset.theme="light"}</script>
+  <meta property="og:title" content="Batyrlar.com — Ерлер елі">
+  <meta property="og:description" content="Ел қорғаған батырлар: Қабанбай, Исатай, Махамбет, Қобыланды, Алпамыс және басқалар.">
+  <meta property="og:image" content="assets/img/hero.jpg">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 100'%3E%3Crect width='120' height='100' fill='%230b0a09'/%3E%3Cg fill='none' stroke='%23d6aa5c' stroke-width='8' stroke-linecap='round'%3E%3Cpath d='M60 94V58C60 30 34 20 20 34C8 46 18 66 34 60C46 55 42 40 32 42M60 58C60 30 86 20 100 34C112 46 102 66 86 60C74 55 78 40 88 42'/%3E%3C/g%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
+  <link rel="preload" as="image" href="assets/img/hero.jpg" fetchpriority="high">
+
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/home.css">
+  <script type="module" src="js/home.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main" data-i18n="a11y.skip">Мазмұнға өту</a>
+
+  <header data-site-header data-page="home"></header>
+
+  <main id="main">
+
+    <!-- ============================ HERO ============================ -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero__kerege" aria-hidden="true"></div>
+      <svg class="hero__rosette" aria-hidden="true"><use href="#orn-rosette"/></svg>
+
+      <div class="container hero__grid">
+        <div class="hero__content">
+          <p class="eyebrow hero__eyebrow" data-i18n="hero.eyebrow">Қазақ батырларының порталы</p>
+          <h1 class="hero__title" id="hero-title">BATYRLAR</h1>
+          <p class="hero__slogan" data-i18n="hero.slogan">Ерлер елі — Ел қорғаған батырлар</p>
+          <p class="hero__sub" data-i18n="hero.sub">Жыр мен тарихтан шыққан қаһармандар: олардың ерлігі, сөзі және мұрасы.</p>
+          <div class="hero__actions">
+            <a class="btn btn--gold" href="batyrs.html">
+              <span data-i18n="hero.ctaPrimary">Батырларды көру</span>
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+            <a class="btn btn--ghost" href="history.html" data-i18n="hero.ctaSecondary">Тарихты ашу</a>
+          </div>
+          <dl class="hero__stats">
+            <div><dt data-i18n="hero.stat.batyrs">батыр</dt><dd data-count="all">10</dd></div>
+            <div><dt data-i18n="hero.stat.arcs">тарихи желі</dt><dd data-count="arcs">2</dd></div>
+            <div><dt data-i18n="hero.stat.langs">тіл</dt><dd>3</dd></div>
+          </dl>
+        </div>
+
+        <figure class="hero__visual">
+          <svg class="hero__arch-orn" aria-hidden="true"><use href="#orn-koshkar"/></svg>
+          <div class="hero__arch">
+            <img class="hero__img" data-parallax src="assets/img/hero.jpg" alt="" fetchpriority="high" decoding="async">
+          </div>
+          <figcaption class="hero__caption">
+            <svg aria-hidden="true"><use href="#orn-koshkar"/></svg>
+            <span data-i18n="hero.caption">Дала күзетшісі</span>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <div class="marquee" aria-hidden="true"><div class="marquee__track" id="marquee"></div></div>
+
+    <!-- ============================ ТОП БАТЫРЛАР ============================ -->
+    <section class="section" id="top-batyrs" aria-labelledby="top-title">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <div>
+            <p class="eyebrow" data-i18n="top.eyebrow">Таңдаулы</p>
+            <h2 class="section-title" id="top-title" data-i18n="top.title">Топ батырлар</h2>
+          </div>
+          <a class="link-arrow" href="batyrs.html"><span data-i18n="top.all">Барлығы</span> →</a>
+        </div>
+
+        <div class="carousel" data-carousel data-reveal>
+          <ul class="carousel__track" id="top-track" role="list" data-lenis-prevent-wheel></ul>
+          <div class="carousel__footer">
+            <div class="carousel__progress" aria-hidden="true"><span class="carousel__progress-bar"></span></div>
+            <div class="carousel__controls">
+              <button class="round-btn" type="button" data-carousel-prev aria-controls="top-track" data-i18n-attr="aria-label:carousel.prev">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>
+              </button>
+              <button class="round-btn" type="button" data-carousel-next aria-controls="top-track" data-i18n-attr="aria-label:carousel.next">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ БАТЫР ДНЯ ============================ -->
+    <section class="section spotlight-section" aria-label="Spotlight">
+      <div class="container spotlight" id="spotlight"></div>
+    </section>
+
+    <!-- ============================ КАТЕГОРИИ ============================ -->
+    <section class="section" aria-labelledby="cat-title">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <div>
+            <p class="eyebrow" data-i18n="cat.eyebrow">Санаттар</p>
+            <h2 class="section-title" id="cat-title" data-i18n="cat.title">Екі дәстүр — бір рух</h2>
+          </div>
+        </div>
+
+        <div class="categories" data-reveal-stagger="0.12">
+          <a class="category category--epic scheme-dark" href="batyrs.html?type=epic" data-reveal>
+            <img class="category__img" src="assets/img/cat-epic.jpg" alt="" loading="lazy" decoding="async">
+            <span class="category__count"><span data-count="epic">7</span> <span data-i18n="cat.count">батыр</span></span>
+            <h3 class="category__title" data-i18n="type.epicPlural">Эпикалық батырлар</h3>
+            <p class="category__text" data-i18n="cat.epicText">Жыраулар жырлаған аңызға айналған қаһармандар.</p>
+            <span class="category__arrow" aria-hidden="true">→</span>
+          </a>
+          <a class="category category--historical scheme-dark" href="batyrs.html?type=historical" data-reveal>
+            <img class="category__img" src="assets/img/cat-hist.jpg" alt="" loading="lazy" decoding="async">
+            <span class="category__count"><span data-count="historical">3</span> <span data-i18n="cat.count">батыр</span></span>
+            <h3 class="category__title" data-i18n="type.historicalPlural">Тарихи батырлар</h3>
+            <p class="category__text" data-i18n="cat.historicalText">Нақты даталары бар, ел тарихын жасаған тұлғалар.</p>
+            <span class="category__arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ СЮЖЕТНЫЕ АРКИ ============================ -->
+    <section class="section" aria-labelledby="arcs-title">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <div>
+            <p class="eyebrow" data-i18n="arcs.eyebrow">Тарих</p>
+            <h2 class="section-title" id="arcs-title" data-i18n="arcs.title">Сюжеттік желілер</h2>
+          </div>
+        </div>
+
+        <div class="arcs" data-reveal-stagger="0.15">
+          <article class="arc arc--image" data-reveal>
+            <div class="arc__visual"><img class="arc__img" data-parallax src="assets/img/jongar.jpg" alt="" loading="lazy" decoding="async"></div>
+            <div class="arc__body">
+              <span class="arc__years" data-i18n="arc.jongar.years">1643–1758</span>
+              <h3 class="arc__title" data-i18n="arc.jongar.title">Жоңғар соғыстары</h3>
+              <p class="arc__text" data-i18n="arc.jongar.text">Ақтабан шұбырындыдан Аңырақай жеңісіне дейін.</p>
+              <a class="link-arrow arc__link" href="history.html#jongar"><span data-i18n="arcs.more">Желіні ашу</span> →</a>
+            </div>
+          </article>
+          <article class="arc arc--image" data-reveal>
+            <div class="arc__visual"><img class="arc__img" data-parallax src="assets/img/isatay-arc.jpg" alt="" loading="lazy" decoding="async"></div>
+            <div class="arc__body">
+              <span class="arc__years" data-i18n="arc.isatay.years">1836–1838</span>
+              <h3 class="arc__title" data-i18n="arc.isatay.title">Исатай–Махамбет көтерілісі</h3>
+              <p class="arc__text" data-i18n="arc.isatay.text">Бөкей ордасындағы жер мен әділдік үшін көтеріліс.</p>
+              <a class="link-arrow arc__link" href="history.html#isatay-makhambet"><span data-i18n="arcs.more">Желіні ашу</span> →</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ ЦИТАТА ============================ -->
+    <section class="quote-band" aria-label="Quote">
+      <div class="container quote-band__inner" data-reveal="scale">
+        <svg class="quote-band__orn" aria-hidden="true"><use href="#orn-koshkar"/></svg>
+        <p class="eyebrow" data-i18n="quote.eyebrow">Батыр сөзі</p>
+        <div id="quote-band-content"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer data-site-footer></footer>
+</body>
+</html>

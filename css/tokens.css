@@ -1,0 +1,113 @@
+/* ==========================================================================
+   Design tokens — Batyrlar.com
+   Светлая тема по умолчанию (тёплый киіз / пергамент), тёмная — через
+   [data-theme="dark"]. Класс .scheme-dark локально включает тёмную палитру
+   для кинематографичных блоков поверх фото (hero, арки, лайтбокс, футер).
+   ========================================================================== */
+
+:root {
+  /* Surface */
+  --c-bg:          #faf6ef;
+  --c-bg-2:        #f3ebdd;
+  --c-surface:     #fffdf9;
+  --c-surface-2:   #f7f0e4;
+  --c-line:        rgba(120, 86, 40, 0.14);
+  --c-line-strong: rgba(120, 86, 40, 0.32);
+  --bg-rgb:        250 246 239;
+
+  /* Accent: gold / bronze (затемнены для контраста текста на светлом) */
+  --c-gold:        #a2701d;
+  --c-gold-bright: #7c5210;
+  --c-gold-deep:   #6b4510;
+  --c-bronze:      #8a5a2b;
+  --c-ember:       #b4541f;
+  /* Небесно-бирюзовый — тон казахского флага, второй акцент */
+  --c-sky:         #237a8a;
+
+  /* Text */
+  --c-text:        #1e1811;
+  --c-text-muted:  #5c5043;
+  --c-text-dim:    #8c7f6d;
+  --c-on-gold:     #1a1208;
+
+  /* Заливки (кнопки, логотип) одинаково сияют в обеих темах */
+  --grad-gold: linear-gradient(135deg, #f2cf85 0%, #d6aa5c 45%, #a8782f 100%);
+  /* Золотой текст-градиент: на светлом фоне — глубже */
+  --grad-gold-text: linear-gradient(180deg, #b8842f 0%, #8a5a2b 55%, #5e3b12 100%);
+
+  --shadow-card: 0 1px 2px rgba(60, 38, 12, 0.05), 0 8px 24px -8px rgba(60, 38, 12, 0.12);
+  --shadow-lift: 0 2px 4px rgba(60, 38, 12, 0.06), 0 24px 48px -16px rgba(60, 38, 12, 0.24);
+
+  /* Бумажная фактура */
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .45 0 0 0 0 .32 0 0 0 0 .15 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --orn-opacity: 0.1;
+
+  /* Орнаментальные паттерны (data-URI задаются в ornaments.js) */
+  --kerege: var(--pattern-kerege-bronze);
+  --band: var(--pattern-band-bronze);
+
+  /* Фиксированный тон для затемнений поверх фотографий */
+  --shade-rgb: 11 10 9;
+
+  /* Type — Oswald & Inter поддерживают cyrillic-ext: ә ғ қ ң ө ұ ү һ і */
+  --f-display: "Cormorant Garamond", "Cormorant", Georgia, "Times New Roman", serif;
+  --f-body:    "Manrope", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --f-label:   "Manrope", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  --fs-hero: clamp(3.1rem, 7.4vw, 6.9rem);
+  --fs-h1:   clamp(2.75rem, 6vw, 4.75rem);
+  --fs-h2:   clamp(2.25rem, 4.4vw, 3.5rem);
+  --fs-h3:   clamp(1.4rem, 2.1vw, 1.7rem);
+  --fs-lead: clamp(1.05rem, 1.6vw, 1.3rem);
+  --fs-body: 1rem;
+  --fs-sm:   0.875rem;
+  --fs-xs:   0.75rem;
+
+  /* Layout */
+  --container: 1320px;
+  --gutter: clamp(16px, 4vw, 48px);
+  --header-h: 72px;
+  --radius: 14px;
+  --radius-lg: 24px;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur: 0.6s;
+
+  color-scheme: light;
+}
+
+:root[data-theme="dark"],
+.scheme-dark {
+  --c-bg:          #0b0a09;
+  --c-bg-2:        #13110e;
+  --c-surface:     #1a1713;
+  --c-surface-2:   #242019;
+  --c-line:        rgba(214, 170, 92, 0.18);
+  --c-line-strong: rgba(214, 170, 92, 0.42);
+  --bg-rgb:        11 10 9;
+
+  --c-gold:        #d6aa5c;
+  --c-gold-bright: #f2cf85;
+  --c-gold-deep:   #a8782f;
+  --c-bronze:      #8a5a2b;
+  --c-ember:       #c8642a;
+
+  --c-text:        #f4ede1;
+  --c-text-muted:  #b3a893;
+  --c-text-dim:    #8d8372;
+
+  --grad-gold-text: linear-gradient(180deg, #f2cf85 0%, #d6aa5c 50%, #8a5a2b 100%);
+  --c-sky: #5fb8c6;
+  --shadow-card: 0 12px 32px -16px rgba(0, 0, 0, 0.6);
+  --shadow-lift: 0 24px 48px -16px rgba(0, 0, 0, 0.7);
+  --orn-opacity: 0.08;
+
+  --kerege: var(--pattern-kerege-gold);
+  --band: var(--pattern-band-gold);
+
+  color-scheme: dark;
+}
+
+/* Локальная тёмная зона сама задаёт цвет текста */
+.scheme-dark { color: var(--c-text); }
