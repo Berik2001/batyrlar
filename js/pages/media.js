@@ -38,6 +38,45 @@ const ORNAMENT_ITEMS = [
   },
 ];
 
+/**
+ * Кадры степной жизни: закрывают сетку без дыр и дают галерее воздух между
+ * портретами. Сумма клеток (3 арт-баннера + 10 портретов + 4 орнамента + эти 5,
+ * один из которых на две клетки в высоту) делится и на 4, и на 3, и на 2 колонки.
+ */
+const DALA_ITEMS = [
+  {
+    id: "dala-tan",
+    src: "assets/img/dala-tan.jpg",
+    title: { kk: "Дала таңы", ru: "Рассвет в степи", en: "Dawn on the steppe" },
+    caption: { kk: "Тұманды даладан таң сәріде шыққан жасақ", ru: "Отряд выходит в путь на рассвете", en: "A band sets out at first light" },
+  },
+  {
+    id: "shanyraq",
+    src: "assets/img/shanyraq.jpg",
+    title: { kk: "Шаңырақ", ru: "Шанырак", en: "Shanyraq" },
+    caption: { kk: "Киіз үйдің төбесі — әр отбасының аспаны", ru: "Купол юрты — небо каждой семьи", en: "The yurt's crown — each family's own sky" },
+  },
+  {
+    id: "zhyrau",
+    src: "assets/img/zhyrau.jpg",
+    title: { kk: "Жырау", ru: "Жырау", en: "The zhyrau" },
+    caption: { kk: "Батырлар жыры от басында домбырамен айтылады", ru: "Жыр о батырах звучит у огня под домбру", en: "The epic is sung by the fire to a dombyra" },
+  },
+  {
+    id: "burkitshi",
+    src: "assets/img/burkitshi.jpg",
+    tall: true,
+    title: { kk: "Бүркітші", ru: "Беркутчи", en: "The eagle hunter" },
+    caption: { kk: "Қыстың даласында қолында бүркіті бар салбурын", ru: "Охотник с беркутом в зимней степи", en: "A hunter with his golden eagle in the winter steppe" },
+  },
+  {
+    id: "tulpar",
+    src: "assets/img/tulpar.jpg",
+    title: { kk: "Тұлпар", ru: "Тулпар", en: "Tulpar" },
+    caption: { kk: "Батырдың сенімді серігі — жүйрік жылқы", ru: "Верный спутник батыра — быстрый конь", en: "The batyr's truest companion — a swift horse" },
+  },
+];
+
 function buildItems() {
   const art = [
     { id: "hero", cat: "art", src: "assets/img/hero.jpg", wide: true,
@@ -55,10 +94,16 @@ function buildItems() {
     title: b.name, caption: b.epithet, href: `batyr.html?id=${b.id}`,
   }));
   const ornaments = ORNAMENT_ITEMS.map((o) => ({ ...o, cat: "ornament" }));
+  const dala = DALA_ITEMS.map((d) => ({ ...d, cat: "art" }));
   // Перемешиваем категории, чтобы сетка выглядела живой.
   // Сумма клеток (wide = 2, tall = 2, орнамент = 1) должна делиться на число колонок, иначе в сетке останутся дыры
   const [kabanbay, ...restPortraits] = [...portraits].sort((a, b) => Number(b.tall) - Number(a.tall));
-  return [art[0], kabanbay, ornaments[0], ...restPortraits.slice(0, 3), art[2], ornaments[1], ...restPortraits.slice(3, 7), art[1], ornaments[3], ...restPortraits.slice(7), ornaments[2]];
+  return [
+    art[0], kabanbay, ornaments[0], dala[0],
+    ...restPortraits.slice(0, 3), art[2], ornaments[1], dala[1],
+    ...restPortraits.slice(3, 7), art[1], dala[3], ornaments[3], dala[2],
+    ...restPortraits.slice(7), ornaments[2], dala[4],
+  ];
 }
 
 const ITEMS = buildItems();

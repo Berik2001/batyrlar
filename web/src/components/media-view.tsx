@@ -77,6 +77,65 @@ const ORNAMENTS: Item[] = [
   },
 ];
 
+/** Кадры степной жизни: дают галерее воздух между портретами и баннерами */
+const DALA: Item[] = [
+  {
+    id: "dala-tan",
+    cat: "art",
+    src: "/img/dala-tan.jpg",
+    title: { kk: "Дала таңы", ru: "Рассвет в степи", en: "Dawn on the steppe" },
+    caption: {
+      kk: "Тұманды даладан таң сәріде шыққан жасақ",
+      ru: "Отряд выходит в путь на рассвете",
+      en: "A band sets out at first light",
+    },
+  },
+  {
+    id: "shanyraq",
+    cat: "art",
+    src: "/img/shanyraq.jpg",
+    title: { kk: "Шаңырақ", ru: "Шанырак", en: "Shanyraq" },
+    caption: {
+      kk: "Киіз үйдің төбесі — әр отбасының аспаны",
+      ru: "Купол юрты — небо каждой семьи",
+      en: "The yurt's crown — each family's own sky",
+    },
+  },
+  {
+    id: "zhyrau",
+    cat: "art",
+    src: "/img/zhyrau.jpg",
+    title: { kk: "Жырау", ru: "Жырау", en: "The zhyrau" },
+    caption: {
+      kk: "Батырлар жыры от басында домбырамен айтылады",
+      ru: "Жыр о батырах звучит у огня под домбру",
+      en: "The epic is sung by the fire to a dombyra",
+    },
+  },
+  {
+    id: "burkitshi",
+    cat: "art",
+    src: "/img/burkitshi.jpg",
+    title: { kk: "Бүркітші", ru: "Беркутчи", en: "The eagle hunter" },
+    caption: {
+      kk: "Қыстың даласында қолында бүркіті бар салбурын",
+      ru: "Охотник с беркутом в зимней степи",
+      en: "A hunter with his golden eagle in the winter steppe",
+    },
+  },
+  {
+    id: "tulpar",
+    cat: "art",
+    src: "/img/tulpar.jpg",
+    title: { kk: "Тұлпар", ru: "Тулпар", en: "Tulpar" },
+    caption: {
+      kk: "Батырдың сенімді серігі — жүйрік жылқы",
+      ru: "Верный спутник батыра — быстрый конь",
+      en: "The batyr's truest companion — a swift horse",
+    },
+  },
+];
+
 function buildItems(videos: Video[]): Item[] {
   const art: Item[] = [
     {
@@ -124,11 +183,11 @@ function buildItems(videos: Video[]): Item[] {
   }));
 
   // Чередуем категории, чтобы колонки выглядели живыми.
-  // Очереди опустошаются через shift(), поэтому ORNAMENTS копируем —
-  // иначе модульный массив вычерпается и при следующем маунте орнаментов не будет
+  // Очереди опустошаются через shift(), поэтому ORNAMENTS и DALA копируем —
+  // иначе модульные массивы вычерпаются и при следующем маунте плиток не будет
   const mixed: Item[] = [];
-  const queues = [art, portraits, [...ORNAMENTS], videoItems];
-  const pattern = [1, 3, 0, 1, 2, 3, 1, 1, 0, 3, 1, 2, 1, 3];
+  const queues = [art, portraits, [...ORNAMENTS], videoItems, [...DALA]];
+  const pattern = [1, 3, 0, 4, 1, 2, 3, 1, 4, 1, 0, 3, 1, 2, 4, 1, 3];
   let p = 0;
   while (queues.some((q) => q.length)) {
     const qi = pattern[p++ % pattern.length];
