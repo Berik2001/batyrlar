@@ -1,0 +1,69 @@
+name: Публикация на GitHub Pages
+
+# Сайт пересобирается при каждом пуше в main; можно запустить и вручную
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Права нужны самому GitHub Pages, а не стороннему сервису
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Параллельные публикации мешают друг другу: держим одну очередь
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+env:
+  # Репозиторий не корневой, поэтому сайт живёт в подпапке /batyrlar
+  NEXT_PUBLIC_BASE_PATH: /batyrlar
+  # Адрес нужен для картинки предпросмотра в мессенджерах (og:image)
+  NEXT_PUBLIC_SITE_URL: https://berik2001.github.io
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+
+      - name: Установить зависимости
+        working-directory: web
+        run: npm ci
+
+      - name: Собрать статику Next.js
+        working-directory: web
+        run: npm run build
+        env:
+          # Без ключа список роликов берётся из репозитория — это рабочий вариант
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+
+      - name: Положить рядом первую, статическую версию сайта
+        run: |
+          mkdir -p web/out/classic
+          cp -R index.html batyrs.html batyr.html history.html media.html \
+                css js assets web/out/classic/
+          # Отключаем Jekyll: иначе каталоги вроде _next могут не попасть в выдачу
+          touch web/out/.nojekyll
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: web/out
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

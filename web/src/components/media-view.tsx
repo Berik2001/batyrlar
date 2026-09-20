@@ -15,6 +15,7 @@ import { BATYRS, type Localized } from "@/data/batyrs";
 import { useT } from "@/lib/use-t";
 import { PageHero } from "@/components/ui";
 import { lockScroll, unlockScroll } from "@/components/providers";
+import { asset } from "@/lib/asset";
 
 type Cat = "all" | "art" | "portrait" | "ornament" | "video";
 
@@ -34,7 +35,7 @@ const ORNAMENTS: Item[] = [
   {
     id: "koshkar",
     cat: "ornament",
-    src: "/img/orn-koshkar.jpg",
+    src: asset("/img/orn-koshkar.jpg"),
     title: { kk: "Қошқар мүйіз", ru: "Кошкар муйиз", en: "Qoshqar müiz" },
     caption: {
       kk: "Сырмаққа түскен қошқардың мүйізі — молшылық пен күштің белгісі",
@@ -45,7 +46,7 @@ const ORNAMENTS: Item[] = [
   {
     id: "rosette",
     cat: "ornament",
-    src: "/img/orn-rosette.jpg",
+    src: asset("/img/orn-rosette.jpg"),
     title: { kk: "Тұмар-розетка", ru: "Тумар и розетка", en: "Tumar and rosette" },
     caption: {
       kk: "Күміс тұмар мен дөңгелек түйме — бірлік пен қорғаныс белгісі",
@@ -56,7 +57,7 @@ const ORNAMENTS: Item[] = [
   {
     id: "kerege",
     cat: "ornament",
-    src: "/img/orn-kerege.jpg",
+    src: asset("/img/orn-kerege.jpg"),
     title: { kk: "Кереге", ru: "Кереге", en: "Kerege" },
     caption: {
       kk: "Киіз үйдің торлы қабырғасы — шаңырақтың тірегі",
@@ -67,7 +68,7 @@ const ORNAMENTS: Item[] = [
   {
     id: "baskur",
     cat: "ornament",
-    src: "/img/orn-band.jpg",
+    src: asset("/img/orn-band.jpg"),
     title: { kk: "Бау-басқұр", ru: "Тканый бау", en: "Woven baskur" },
     caption: {
       kk: "Киіз үйді буатын өрнекті бау — қошқар мүйіз тізбегі",
@@ -82,7 +83,7 @@ const DALA: Item[] = [
   {
     id: "dala-tan",
     cat: "art",
-    src: "/img/dala-tan.jpg",
+    src: asset("/img/dala-tan.jpg"),
     title: { kk: "Дала таңы", ru: "Рассвет в степи", en: "Dawn on the steppe" },
     caption: {
       kk: "Тұманды даладан таң сәріде шыққан жасақ",
@@ -93,7 +94,7 @@ const DALA: Item[] = [
   {
     id: "shanyraq",
     cat: "art",
-    src: "/img/shanyraq.jpg",
+    src: asset("/img/shanyraq.jpg"),
     title: { kk: "Шаңырақ", ru: "Шанырак", en: "Shanyraq" },
     caption: {
       kk: "Киіз үйдің төбесі — әр отбасының аспаны",
@@ -104,7 +105,7 @@ const DALA: Item[] = [
   {
     id: "zhyrau",
     cat: "art",
-    src: "/img/zhyrau.jpg",
+    src: asset("/img/zhyrau.jpg"),
     title: { kk: "Жырау", ru: "Жырау", en: "The zhyrau" },
     caption: {
       kk: "Батырлар жыры от басында домбырамен айтылады",
@@ -115,7 +116,7 @@ const DALA: Item[] = [
   {
     id: "burkitshi",
     cat: "art",
-    src: "/img/burkitshi.jpg",
+    src: asset("/img/burkitshi.jpg"),
     title: { kk: "Бүркітші", ru: "Беркутчи", en: "The eagle hunter" },
     caption: {
       kk: "Қыстың даласында қолында бүркіті бар салбурын",
@@ -126,7 +127,7 @@ const DALA: Item[] = [
   {
     id: "tulpar",
     cat: "art",
-    src: "/img/tulpar.jpg",
+    src: asset("/img/tulpar.jpg"),
     title: { kk: "Тұлпар", ru: "Тулпар", en: "Tulpar" },
     caption: {
       kk: "Батырдың сенімді серігі — жүйрік жылқы",
@@ -141,7 +142,7 @@ function buildItems(videos: Video[]): Item[] {
     {
       id: "hero",
       cat: "art",
-      src: "/img/hero.jpg",
+      src: asset("/img/hero.jpg"),
       title: { kk: "Дала күзетшісі", ru: "Страж степи", en: "Guardian of the Steppe" },
       caption: { kk: "Batyrlar.com басты бетінің арты", ru: "Главный арт Batyrlar.com", en: "Batyrlar.com key art" },
     },

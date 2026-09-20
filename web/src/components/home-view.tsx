@@ -19,6 +19,7 @@ import {
   Reveal,
   SectionHead,
 } from "@/components/ui";
+import { asset } from "@/lib/asset";
 
 // Сцена тяжёлая и работает только в браузере
 const HeroScene = dynamic(() => import("@/components/three/HeroScene"), {
@@ -175,14 +176,14 @@ export function HomeView() {
       title: t("type.epicPlural"),
       text: t("cat.epicText"),
       count: byType("epic").length,
-      image: "/img/cat-epic.jpg",
+      image: asset("/img/cat-epic.jpg"),
     },
     {
       type: "historical" as const,
       title: t("type.historicalPlural"),
       text: t("cat.historicalText"),
       count: byType("historical").length,
-      image: "/img/cat-hist.jpg",
+      image: asset("/img/cat-hist.jpg"),
     },
   ];
 

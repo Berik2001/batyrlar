@@ -7,6 +7,7 @@
  */
 
 import type { Localized } from "@/data/batyrs";
+import { asset } from "@/lib/asset";
 
 /** Событие внутри арки: год и его описание. */
 export interface ArcEvent {
@@ -33,7 +34,7 @@ export interface Arc {
 export const ARCS: Arc[] = [
   {
     id: "jongar",
-    image: "/img/jongar.jpg",
+    image: asset("/img/jongar.jpg"),
     years: "1643–1758",
     title: { kk: "Жоңғар соғыстары", ru: "Джунгарские войны", en: "The Dzungar Wars" },
     lead: {
@@ -102,7 +103,7 @@ export const ARCS: Arc[] = [
   {
     id: "isatay-makhambet",
     years: "1836–1838",
-    image: "/img/isatay-arc.jpg",
+    image: asset("/img/isatay-arc.jpg"),
     palette: ["#7a3a14", "#140904"],
     title: { kk: "Исатай–Махамбет көтерілісі", ru: "Восстание Исатая и Махамбета", en: "The Isatay–Makhambet Uprising" },
     lead: {

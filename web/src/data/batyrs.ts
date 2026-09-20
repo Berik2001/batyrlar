@@ -8,6 +8,7 @@
  * Данные перенесены без изменений из js/data/batyrs.js;
  * пути к изображениям переписаны на public-каталог Next.js (/img/...).
  */
+import { asset } from "@/lib/asset";
 
 /** Языки интерфейса и контента. */
 export type Lang = "kk" | "ru" | "en";
@@ -65,7 +66,7 @@ export interface Batyr {
 export const BATYRS: Batyr[] = [
   {
     id: "qobylandy",
-    image: "/img/qobylandy.jpg",
+    image: asset("/img/qobylandy.jpg"),
     type: "epic",
     top: true,
     palette: ["#6b3a1e", "#1a0f08"],
@@ -137,7 +138,7 @@ export const BATYRS: Batyr[] = [
   },
   {
     id: "alpamys",
-    image: "/img/alpamys.jpg",
+    image: asset("/img/alpamys.jpg"),
     type: "epic",
     top: true,
     palette: ["#2f4a3a", "#0b120d"],
@@ -197,7 +198,7 @@ export const BATYRS: Batyr[] = [
   },
   {
     id: "er-targyn",
-    image: "/img/er-targyn.jpg",
+    image: asset("/img/er-targyn.jpg"),
     type: "epic",
     top: true,
     palette: ["#5a2a2a", "#140909"],
@@ -253,7 +254,7 @@ export const BATYRS: Batyr[] = [
   },
   {
     id: "qambar",
-    image: "/img/qambar.jpg",
+    image: asset("/img/qambar.jpg"),
     type: "epic",
     top: false,
     palette: ["#4a3a1c", "#120e06"],
@@ -305,7 +306,7 @@ export const BATYRS: Batyr[] = [
   },
   {
     id: "er-sayin",
-    image: "/img/er-sayin.jpg",
+    image: asset("/img/er-sayin.jpg"),
     type: "epic",
     top: false,
     palette: ["#233a4f", "#070d14"],
@@ -353,7 +354,7 @@ export const BATYRS: Batyr[] = [
   },
   {
     id: "er-kokshe",
-    image: "/img/er-kokshe.jpg",
+    image: asset("/img/er-kokshe.jpg"),
     type: "epic",
     top: false,
     palette: ["#3b3552", "#0d0b14"],
@@ -401,7 +402,7 @@ export const BATYRS: Batyr[] = [
   },
   {
     id: "qarasay",
-    image: "/img/qarasay.jpg",
+    image: asset("/img/qarasay.jpg"),
     type: "epic",
     top: false,
     palette: ["#4f2e3f", "#12090e"],
@@ -460,7 +461,7 @@ export const BATYRS: Batyr[] = [
     type: "historical",
     top: true,
     featured: true,
-    image: "/img/kabanbay.jpg",
+    image: asset("/img/kabanbay.jpg"),
     palette: ["#6b1f1f", "#140606"],
     name: { kk: "Қабанбай батыр", ru: "Кабанбай батыр", en: "Kabanbay Batyr" },
     epithet: { kk: "Дарабоз", ru: "Дарабоз — «Несравненный»", en: "Daraboz — “the Peerless”" },
@@ -524,7 +525,7 @@ export const BATYRS: Batyr[] = [
   },
   {
     id: "isatay",
-    image: "/img/isatay.jpg",
+    image: asset("/img/isatay.jpg"),
     type: "historical",
     top: true,
     palette: ["#5c3b14", "#140c04"],
@@ -590,7 +591,7 @@ export const BATYRS: Batyr[] = [
   },
   {
     id: "makhambet",
-    image: "/img/makhambet.jpg",
+    image: asset("/img/makhambet.jpg"),
     type: "historical",
     top: true,
     palette: ["#1f3b44", "#061013"],

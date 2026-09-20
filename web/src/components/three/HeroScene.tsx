@@ -15,6 +15,7 @@ import type { Batyr } from "@/data/batyrs";
 import { useApp } from "@/lib/store";
 import { BatyrRing } from "./BatyrRing";
 import { Shanyraq } from "./Shanyraq";
+import { asset } from "@/lib/asset";
 
 /** Палитра сцены: днём светлая степь, в тёмной теме — закатная. */
 interface Palette {
@@ -35,7 +36,7 @@ interface Palette {
 
 const PALETTE: Record<"light" | "dark", Palette> = {
   light: {
-    sky: "/img/steppe-pano-light.jpg",
+    sky: asset("/img/steppe-pano-light.jpg"),
     background: "#faf6ef",
     fog: "#f6efe2",
     fogRange: [30, 60],
@@ -50,7 +51,7 @@ const PALETTE: Record<"light" | "dark", Palette> = {
     vignette: 0.35,
   },
   dark: {
-    sky: "/img/steppe-pano.jpg",
+    sky: asset("/img/steppe-pano.jpg"),
     background: "#0b0a09",
     fog: "#120c06",
     fogRange: [18, 46],
@@ -125,7 +126,7 @@ function StaticFallback({ light }: { light: boolean }) {
   return (
     <div className="absolute inset-0">
       <Image
-        src={light ? "/img/steppe-pano-light.jpg" : "/img/hero.jpg"}
+        src={light ? asset("/img/steppe-pano-light.jpg") : asset("/img/hero.jpg")}
         alt=""
         fill
         priority

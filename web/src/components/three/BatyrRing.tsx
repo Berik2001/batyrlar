@@ -12,6 +12,7 @@ import { RoundedBox, useTexture } from "@react-three/drei";
 import { type Group, type Mesh, type Texture } from "three";
 import type { Batyr } from "@/data/batyrs";
 import { useApp } from "@/lib/store";
+import { asset } from "@/lib/asset";
 
 const CARD_W = 1.35;
 const CARD_H = 1.8;
@@ -98,8 +99,8 @@ export function BatyrRing({ batyrs, frameColor = "#f7e3b8" }: { batyrs: Batyr[];
   const drag = useRef({ active: false, x: 0, velocity: 0 });
   const router = useRouter();
 
-  const textures = useTexture(batyrs.map((b) => b.image ?? "/img/hero.jpg"));
-  const frameTexture = useTexture("/img/ornament-tex.jpg");
+  const textures = useTexture(batyrs.map((b) => b.image ?? asset("/img/hero.jpg")));
+  const frameTexture = useTexture(asset("/img/ornament-tex.jpg"));
 
   useFrame((_, delta) => {
     const g = group.current;

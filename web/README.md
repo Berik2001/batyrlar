@@ -10,9 +10,12 @@
 ```bash
 npm install
 npm run dev     # http://localhost:3000
-npm run build   # прод-сборка: все 17 страниц статические
-npm start
+npm run build   # статический экспорт: 17 страниц в out/
 ```
+
+`output: "export"` — проект собирается в статические файлы, поэтому `npm start`
+не нужен: каталог `out/` можно отдавать любым сервером. Публикация настроена
+на GitHub Pages, подробности — в [корневом README](../README.md#публикация).
 
 ## Стек
 
