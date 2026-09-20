@@ -467,6 +467,76 @@
   .timeline__label { grid-row: auto; }
 }
 
+/* Видео: до клика показываем только превью, плеер подставляется по нажатию */
+.videos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.video {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--c-line);
+  border-radius: var(--radius-lg);
+  background: var(--c-surface);
+  box-shadow: var(--shadow-card);
+  transition: border-color 0.3s ease, transform 0.4s var(--ease-out), box-shadow 0.4s var(--ease-out);
+}
+.video:hover { border-color: var(--c-line-strong); transform: translateY(-4px); box-shadow: var(--shadow-lift); }
+.video__frame {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: var(--c-surface-2);
+}
+.video__play {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+.video__thumb { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s var(--ease-out); }
+.video__play:hover .video__thumb { transform: scale(1.05); }
+.video__badge {
+  position: absolute;
+  top: 50%; left: 50%;
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  transform: translate(-50%, -50%);
+  border: 1px solid color-mix(in srgb, var(--c-gold) 70%, transparent);
+  border-radius: 50%;
+  color: #f6efe2;
+  background: rgb(11 10 9 / 0.55);
+  backdrop-filter: blur(4px);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+.video__badge svg { margin-left: 3px; }
+.video__play:hover .video__badge,
+.video__play:focus-visible .video__badge { background: var(--c-gold); color: var(--c-on-gold); }
+.video__time {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  padding: 2px 7px;
+  border-radius: 6px;
+  font-family: var(--f-label);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #f6efe2;
+  background: rgb(11 10 9 / 0.8);
+}
+.video__player { width: 100%; height: 100%; border: 0; }
+.video__body { display: grid; gap: 4px; padding: 18px 20px 20px; }
+.video__title { font-family: var(--f-display); font-size: 1.25rem; font-weight: 600; line-height: 1.25; }
+.video__channel { font-size: 0.9rem; color: var(--c-text-dim); }
+.video__body .link-arrow { margin-top: 8px; }
+
 .quote-band--compact { padding-block: clamp(64px, 9vw, 112px); border-block: 1px solid var(--c-line); }
 .quote-band--compact .quote-band__quote p { font-size: clamp(1.5rem, 3.4vw, 2.6rem); }
 

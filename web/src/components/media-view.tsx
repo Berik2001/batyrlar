@@ -10,7 +10,7 @@ import NextImage from "next/image";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { ARCS } from "@/data/arcs";
-import { videoEmbed, videoThumb, videoWatch, type Video } from "@/data/videos";
+import { galleryVideos, videoEmbed, videoThumb, videoWatch, type Video } from "@/data/videos";
 import { BATYRS, type Localized } from "@/data/batyrs";
 import { useT } from "@/lib/use-t";
 import { PageHero } from "@/components/ui";
@@ -171,7 +171,7 @@ function buildItems(videos: Video[]): Item[] {
       : [],
   );
 
-  const videoItems: Item[] = videos.map((v) => ({
+  const videoItems: Item[] = galleryVideos(videos).map((v) => ({
     id: `video-${v.id}`,
     cat: "video" as const,
     src: videoThumb(v.id),

@@ -7,8 +7,10 @@
 import Link from "next/link";
 import NextImage from "next/image";
 import { BATYRS, getBatyr } from "@/data/batyrs";
+import { videosFor } from "@/data/videos";
 import { useT } from "@/lib/use-t";
 import { BatyrCard, KoshkarOrnament, Reveal, RosetteOrnament } from "@/components/ui";
+import { VideoList } from "@/components/video-list";
 
 export function BatyrView({ id }: { id: string }) {
   const { t, pick } = useT();
@@ -31,6 +33,7 @@ export function BatyrView({ id }: { id: string }) {
   const next = BATYRS[(index + 1) % BATYRS.length];
   const related = batyr.related.map(getBatyr).filter((b) => b !== undefined);
   const deeds = pick(batyr.deeds);
+  const videos = videosFor(batyr.id);
 
   return (
     <>
@@ -153,6 +156,19 @@ export function BatyrView({ id }: { id: string }) {
           ))}
         </ol>
       </section>
+
+      {/* Бейне */}
+      {videos.length > 0 && (
+        <section className="container-page border-t border-line py-20">
+          <Reveal>
+            <h2 className="flex items-center gap-6 text-h2">
+              {t("batyr.videos")}
+              <span className="h-px flex-1 bg-line" />
+            </h2>
+          </Reveal>
+          <VideoList videos={videos} />
+        </section>
+      )}
 
       {/* Цитата */}
       <section className="border-y border-line bg-bg-2 py-24">

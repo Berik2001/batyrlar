@@ -7,9 +7,11 @@
 import Link from "next/link";
 import NextImage from "next/image";
 import { ARCS } from "@/data/arcs";
+import { videosFor } from "@/data/videos";
 import { getBatyr } from "@/data/batyrs";
 import { useT } from "@/lib/use-t";
 import { BatyrCard, PageHero, Reveal } from "@/components/ui";
+import { VideoList } from "@/components/video-list";
 
 export function HistoryView() {
   const { t, pick } = useT();
@@ -44,6 +46,7 @@ export function HistoryView() {
 
       {ARCS.map((arc, arcIndex) => {
         const figures = arc.figures.map(getBatyr).filter((b) => b !== undefined);
+        const arcVideos = videosFor(arc.id);
         return (
           <section key={arc.id} id={arc.id} className="scroll-mt-24 border-t border-line py-20">
             <div className="container-page">
@@ -95,6 +98,13 @@ export function HistoryView() {
                       </Reveal>
                     ))}
                   </div>
+                </>
+              )}
+
+              {arcVideos.length > 0 && (
+                <>
+                  <h3 className="eyebrow mt-12">{t("batyr.videos")}</h3>
+                  <VideoList videos={arcVideos} />
                 </>
               )}
             </div>

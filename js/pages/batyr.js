@@ -6,6 +6,7 @@ import { BATYRS, getBatyr } from "../data/batyrs.js";
 import { initPage } from "../app.js";
 import { pick, t } from "../i18n.js";
 import { batyrCard, batyrMedia, escapeHtml } from "../card.js";
+import { videoEmbed, videoThumb, videoWatch, videosFor } from "../data/videos.js";
 
 const id = new URLSearchParams(location.search).get("id");
 const root = document.getElementById("batyr");
@@ -46,6 +47,40 @@ function renderTimeline(b) {
             <p class="timeline__text">${escapeHtml(pick(step.text))}</p>
           </li>`).join("")}
       </ol>
+    </section>`;
+}
+
+/**
+ * Ролики о батыре. До клика на странице только превью с YouTube:
+ * плеер (youtube-nocookie) подставляется по нажатию, поэтому страница
+ * не тянет за собой чужие скрипты при загрузке.
+ */
+function renderVideos(b) {
+  const videos = videosFor(b.id);
+  if (!videos.length) return "";
+  return `
+    <section class="detail-section" aria-labelledby="video-title">
+      <h2 class="detail-title" id="video-title" data-reveal>${t("batyr.videos")}</h2>
+      <ul class="videos" role="list" data-reveal-stagger="0.1">
+        ${videos.map((v) => `
+          <li class="video" data-reveal>
+            <div class="video__frame">
+              <button class="video__play" type="button" data-video="${v.id}"
+                      aria-label="${t("video.play")}: ${escapeHtml(v.title)}">
+                <img class="video__thumb" src="${videoThumb(v.id)}" alt="" loading="lazy" decoding="async">
+                <span class="video__badge" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="26" height="26"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
+                </span>
+                ${v.duration ? `<span class="video__time">${v.duration}</span>` : ""}
+              </button>
+            </div>
+            <div class="video__body">
+              <h3 class="video__title">${escapeHtml(v.title)}</h3>
+              <p class="video__channel">${escapeHtml(v.channel)}</p>
+              <a class="link-arrow" href="${videoWatch(v.id)}" target="_blank" rel="noopener">${t("video.watch")} ↗</a>
+            </div>
+          </li>`).join("")}
+      </ul>
     </section>`;
 }
 
@@ -108,6 +143,8 @@ function render() {
       </section>
 
       ${renderTimeline(b)}
+
+      ${renderVideos(b)}
     </div>
 
     <section class="quote-band quote-band--compact" aria-label="${t("quote.eyebrow")}">
@@ -142,5 +179,16 @@ function render() {
       </nav>
     </div>`;
 }
+
+// Плеер вставляем по клику, чтобы не грузить чужой iframe заранее
+root.addEventListener("click", (e) => {
+  const btn = e.target.closest("[data-video]");
+  if (!btn) return;
+  const frame = btn.closest(".video__frame");
+  frame.innerHTML = `<iframe class="video__player" src="${videoEmbed(btn.dataset.video)}"
+    title="${btn.closest(".video").querySelector(".video__title").textContent}"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen></iframe>`;
+});
 
 initPage({ render });

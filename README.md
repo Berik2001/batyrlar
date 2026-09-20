@@ -43,12 +43,12 @@ python3 serve.py          # локальный сервер без кеша (п�
 ```
 index.html            Главная: hero, карусель топ-батыров, батыр дня, категории, арки, цитата
 batyrs.html           Каталог: фильтр по типу + поиск по имени (?type=epic&q=…)
-batyr.html?id=…       Страница батыра: портрет, биография, ерлік істері, таймлайн, цитата, связанные
+batyr.html?id=…       Страница батыра: портрет, биография, ерлік істері, таймлайн, видео, цитата, связанные
 history.html          Сюжетные арки: Жоңғар соғыстары, Исатай–Махамбет (#jongar, #isatay-makhambet)
 media.html            Галерея с фильтром и лайтбоксом (?cat=art|portrait|ornament)
 css/  tokens · base · components (общие) · home · pages (внутренние страницы)
 js/   app.js (инициализация) · motion.js · tilt.js · i18n.js · ornaments.js · layout.js · card.js · reveal.js · home.js
-js/data/   batyrs.js · arcs.js
+js/data/   batyrs.js · arcs.js · videos.js (ролики YouTube по батырам)
 js/pages/  batyrs.js · batyr.js · history.js · media.js
 assets/img/           арт и портреты (сгенерированы в Higgsfield)
 ```

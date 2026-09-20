@@ -8,7 +8,8 @@
  */
 import { CURATED_VIDEOS, type Video } from "@/data/videos";
 
-const ENDPOINT = "https://www.googleapis.com/youtube/v3/search";
+const SEARCH = "https://www.googleapis.com/youtube/v3/search";
+const DETAILS = "https://www.googleapis.com/youtube/v3/videos";
 const QUERY = "қазақ батырлары деректі фильм батырлар жыры";
 const DAY = 86_400;
 
@@ -40,7 +41,7 @@ export async function getVideos(): Promise<{ videos: Video[]; source: VideoSourc
   });
 
   try {
-    const res = await fetch(`${ENDPOINT}?${params}`, { next: { revalidate: DAY } });
+    const res = await fetch(`${SEARCH}?${params}`, { next: { revalidate: DAY } });
     if (!res.ok) return { videos: CURATED_VIDEOS, source: "curated" };
 
     const data = (await res.json()) as SearchResponse;
@@ -51,7 +52,8 @@ export async function getVideos(): Promise<{ videos: Video[]; source: VideoSourc
       return [{ id, title: decodeEntities(title), channel: decodeEntities(item.snippet?.channelTitle ?? "YouTube") }];
     });
 
-    return videos.length ? { videos, source: "api" } : { videos: CURATED_VIDEOS, source: "curated" };
+    if (!videos.length) return { videos: CURATED_VIDEOS, source: "curated" };
+    return { videos: await withDurations(videos, key), source: "api" };
   } catch {
     return { videos: CURATED_VIDEOS, source: "curated" };
   }
@@ -65,4 +67,35 @@ function decodeEntities(s: string): string {
     .replace(/&amp;/g, "&")
     .replace(/&lt;/g, "<")
     .replace(/&gt;/g, ">");
+}
+
+/**
+ * search.list не отдаёт длительность — добираем её одним запросом videos.list.
+ * Если запрос не удался, ролики просто останутся без подписи с хронометражом.
+ */
+async function withDurations(videos: Video[], key: string): Promise<Video[]> {
+  const params = new URLSearchParams({ key, part: "contentDetails", id: videos.map((v) => v.id).join(",") });
+  try {
+    const res = await fetch(`${DETAILS}?${params}`, { next: { revalidate: DAY } });
+    if (!res.ok) return videos;
+
+    const data = (await res.json()) as { items?: { id?: string; contentDetails?: { duration?: string } }[] };
+    const byId = new Map<string, string>();
+    for (const item of data.items ?? []) {
+      const iso = item.contentDetails?.duration;
+      if (item.id && iso) byId.set(item.id, formatDuration(iso));
+    }
+    return videos.map((v) => ({ ...v, duration: byId.get(v.id) }));
+  } catch {
+    return videos;
+  }
+}
+
+/** ISO 8601 (PT1H24M37S) → 1:24:37 */
+function formatDuration(iso: string): string {
+  const m = /^P(?:\d+D)?T(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?$/.exec(iso);
+  if (!m) return "";
+  const [h, min, sec] = [Number(m[1] ?? 0), Number(m[2] ?? 0), Number(m[3] ?? 0)];
+  const mm = String(min).padStart(h ? 2 : 1, "0");
+  return `${h ? `${h}:` : ""}${mm}:${String(sec).padStart(2, "0")}`;
 }

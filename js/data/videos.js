@@ -7,18 +7,7 @@
  * Длительность взята оттуда же. Поле related связывает ролик с батыром
  * (или с аркой на странице «Тарих»).
  */
-export interface Video {
-  /** id ролика на YouTube */
-  id: string;
-  title: string;
-  channel: string;
-  /** длительность в формате ч:мм:сс или мм:сс; из search.list не приходит */
-  duration?: string;
-  /** id батыра или арки, к которым относится ролик */
-  related?: string;
-}
-
-export const CURATED_VIDEOS: Video[] = [
+export const VIDEOS = [
   { id: "AcFxGAXvpe4", title: "Ербол Қуанбек — «Қобыланды батыр» жыры. «Жеті қазына»", channel: "Khabar TV", duration: "6:40", related: "qobylandy" },
   { id: "WgVccR6lHBg", title: "Қобыланды батыр жыры. Орындаған Абдуррахман Естайұлы", channel: "Дәрібаевтар ансамблі", duration: "2:50:45", related: "qobylandy" },
   { id: "VkOUlQ6hCOo", title: "Қобыланды батыр жыры. 1-бөлім", channel: "Aba Kaz", duration: "2:30:00", related: "qobylandy" },
@@ -51,29 +40,13 @@ export const CURATED_VIDEOS: Video[] = [
 ];
 
 /** Ролики конкретного батыра или арки */
-export const videosFor = (id: string): Video[] => CURATED_VIDEOS.filter((v) => v.related === id);
-
-/**
- * Для галереи берём по одному ролику на батыра, иначе видео вытеснит
- * портреты и орнаменты. Список из API приходит без related — тогда просто
- * ограничиваем длину.
- */
-export function galleryVideos(videos: Video[]): Video[] {
-  const seen = new Set<string>();
-  const picked = videos.filter((v) => {
-    if (!v.related) return true;
-    if (seen.has(v.related)) return false;
-    seen.add(v.related);
-    return true;
-  });
-  return picked.slice(0, 12);
-}
+export const videosFor = (id) => VIDEOS.filter((v) => v.related === id);
 
 /** Превью ролика отдаёт сам YouTube — картинки у себя не держим */
-export const videoThumb = (id: string) => `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
+export const videoThumb = (id) => `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
 
-/** Плеер без куки-трекинга: youtube-nocookie */
-export const videoEmbed = (id: string) =>
+/** Плеер без куки-трекинга: youtube-nocookie. autoplay — потому что ставится по клику */
+export const videoEmbed = (id) =>
   `https://www.youtube-nocookie.com/embed/${id}?rel=0&modestbranding=1&autoplay=1`;
 
-export const videoWatch = (id: string) => `https://www.youtube.com/watch?v=${id}`;
+export const videoWatch = (id) => `https://www.youtube.com/watch?v=${id}`;
