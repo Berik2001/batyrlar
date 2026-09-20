@@ -35,9 +35,11 @@ jobs:
           cache: npm
           cache-dependency-path: web/package-lock.json
 
+      # Не npm ci: часть зависимостей ставится только под свою платформу,
+      # и lock-файл, собранный на macOS, Linux-раннер считает рассинхронизированным
       - name: Установить зависимости
         working-directory: web
-        run: npm ci
+        run: npm install --no-audit --no-fund
 
       - name: Собрать статику Next.js
         working-directory: web
