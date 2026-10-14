@@ -50,6 +50,19 @@ export function ComicsView() {
     <>
       <PageHero eyebrow={t("page.comics.eyebrow")} title={t("page.comics.title")} lead={t("page.comics.lead")} />
 
+      {/* Комиксов стало несколько — даём переход сразу к нужному */}
+      <nav className="container-page flex flex-wrap gap-3 pt-10" aria-label="comics">
+        {COMICS.map((comic) => (
+          <a
+            key={comic.id}
+            href={`#${comic.id}`}
+            className="rounded-full border border-line bg-surface px-5 py-2 text-sm text-muted transition-colors hover:border-gold hover:text-gold"
+          >
+            {pick(comic.title)}
+          </a>
+        ))}
+      </nav>
+
       {COMICS.map((comic, comicIndex) => {
         const batyr = getBatyr(comic.batyr);
         return (
