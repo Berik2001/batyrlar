@@ -7,7 +7,8 @@
  */
 import { useState } from "react";
 import NextImage from "next/image";
-import { videoEmbed, videoThumb, videoWatch, type Video } from "@/data/videos";
+import { videoThumb, videoWatch, type Video } from "@/data/videos";
+import { YouTubePlayer } from "@/components/youtube-player";
 import { useT } from "@/lib/use-t";
 import { Reveal } from "@/components/ui";
 
@@ -22,13 +23,7 @@ export function VideoList({ videos }: { videos: Video[] }) {
           <article className="group h-full overflow-hidden rounded-[var(--radius-card)] border border-line bg-surface shadow-[var(--shadow-card)] transition-shadow hover:shadow-[var(--shadow-lift)]">
             <div className="relative aspect-video bg-bg-2">
               {playing === video.id ? (
-                <iframe
-                  src={videoEmbed(video.id)}
-                  title={video.title}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                  className="absolute inset-0 h-full w-full"
-                />
+                <YouTubePlayer id={video.id} title={video.title} />
               ) : (
                 <button
                   type="button"
@@ -67,7 +62,7 @@ export function VideoList({ videos }: { videos: Video[] }) {
                 rel="noopener noreferrer"
                 className="eyebrow mt-3 inline-block text-gold"
               >
-                {t("video.watch")} ↗
+                {t("video.notOpening")} {t("video.watch")} ↗
               </a>
             </div>
           </article>

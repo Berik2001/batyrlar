@@ -11,7 +11,8 @@ import { useState } from "react";
 import Link from "next/link";
 import NextImage from "next/image";
 import { BATYRS } from "@/data/batyrs";
-import { ZHYR_VIDEOS, videoEmbed, videoWatch, type Video } from "@/data/videos";
+import { ZHYR_VIDEOS, videoWatch, type Video } from "@/data/videos";
+import { YouTubePlayer } from "@/components/youtube-player";
 import { useT } from "@/lib/use-t";
 import { PageHero, Reveal } from "@/components/ui";
 
@@ -101,7 +102,7 @@ export function AudioView() {
                             href={videoWatch(video.id)}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="hidden shrink-0 text-sm text-dim hover:text-gold sm:block"
+                            className="shrink-0 text-sm text-dim hover:text-gold"
                           >
                             YouTube ↗
                           </a>
@@ -109,13 +110,7 @@ export function AudioView() {
 
                         {isPlaying && (
                           <div className="mt-4 aspect-video w-full overflow-hidden rounded-xl">
-                            <iframe
-                              src={videoEmbed(video.id)}
-                              title={video.title}
-                              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                              allowFullScreen
-                              className="h-full w-full"
-                            />
+                            <YouTubePlayer id={video.id} title={video.title} />
                           </div>
                         )}
                       </li>

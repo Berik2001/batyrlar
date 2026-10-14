@@ -173,6 +173,9 @@ const KK = {
   "page.video.title": "Деректі фильмдер",
   "page.video.lead": "Батырлар туралы деректі фильмдер мен телебағдарламалар — бәрі қазақ тілінде.",
   "video.count": "{n} бейне",
+  "video.loading": "Плеер жүктелуде…",
+  "video.blocked": "Плеер ашылмады. Браузердегі кеңейтім YouTube-ті бөгеп тұрған болуы мүмкін.",
+  "video.notOpening": "Ашылмай тұр ма?",
 };
 
 /** Ключ строки интерфейса: выводится из казахского словаря — он эталонный. */
@@ -343,6 +346,9 @@ const RU: Dictionary = {
   "page.video.title": "Документальные фильмы",
   "page.video.lead": "Фильмы и телепередачи о батырах — всё на казахском языке.",
   "video.count": "видео: {n}",
+  "video.loading": "Плеер загружается…",
+  "video.blocked": "Плеер не открылся. Возможно, расширение браузера блокирует YouTube.",
+  "video.notOpening": "Не открывается?",
 };
 
 const EN: Dictionary = {
@@ -507,6 +513,9 @@ const EN: Dictionary = {
   "page.video.title": "Documentaries",
   "page.video.lead": "Documentary films and TV programmes about the batyrs, all in Kazakh.",
   "video.count": "{n} videos",
+  "video.loading": "Loading the player…",
+  "video.blocked": "The player did not open. A browser extension may be blocking YouTube.",
+  "video.notOpening": "Not opening?",
 };
 
 export const DICT: Record<Lang, Dictionary> = { kk: KK, ru: RU, en: EN };

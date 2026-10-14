@@ -10,7 +10,8 @@ import NextImage from "next/image";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { ARCS } from "@/data/arcs";
-import { galleryVideos, videoEmbed, videoThumb, videoWatch, type Video } from "@/data/videos";
+import { galleryVideos, videoThumb, videoWatch, type Video } from "@/data/videos";
+import { YouTubePlayer } from "@/components/youtube-player";
 import { BATYRS, type Localized } from "@/data/batyrs";
 import { useT } from "@/lib/use-t";
 import { PageHero } from "@/components/ui";
@@ -347,13 +348,7 @@ export function MediaView({ videos }: { videos: Video[] }) {
               >
                 {current.youtubeId ? (
                   <div className="mx-auto aspect-video w-full overflow-hidden rounded-[var(--radius-card)] bg-black">
-                    <iframe
-                      src={videoEmbed(current.youtubeId)}
-                      title={pick(current.title)}
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                      className="h-full w-full"
-                    />
+                    <YouTubePlayer id={current.youtubeId} title={pick(current.title)} />
                   </div>
                 ) : (
                   <NextImage
@@ -390,7 +385,7 @@ export function MediaView({ videos }: { videos: Video[] }) {
                     rel="noreferrer"
                     className="eyebrow mt-3 inline-block"
                   >
-                    {t("media.watchOnYoutube")} →
+                    {t("video.notOpening")} {t("media.watchOnYoutube")} →
                   </a>
                 ) : (
                   <Link href={current.href} className="eyebrow mt-3 inline-block" onClick={close}>
