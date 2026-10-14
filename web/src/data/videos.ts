@@ -16,26 +16,28 @@ export interface Video {
   duration?: string;
   /** id батыра или арки, к которым относится ролик */
   related?: string;
+  /** "zhyr" — исполнение жыра или чтение текста, такие записи слушают, а не смотрят */
+  kind?: "zhyr";
 }
 
 export const CURATED_VIDEOS: Video[] = [
-  { id: "AcFxGAXvpe4", title: "Ербол Қуанбек — «Қобыланды батыр» жыры. «Жеті қазына»", channel: "Khabar TV", duration: "6:40", related: "qobylandy" },
-  { id: "WgVccR6lHBg", title: "Қобыланды батыр жыры. Орындаған Абдуррахман Естайұлы", channel: "Дәрібаевтар ансамблі", duration: "2:50:45", related: "qobylandy" },
-  { id: "VkOUlQ6hCOo", title: "Қобыланды батыр жыры. 1-бөлім", channel: "Aba Kaz", duration: "2:30:00", related: "qobylandy" },
-  { id: "FHipeVonU8o", title: "Шаттық Уатқан — «Алпамыс батыр» жыры. «Жеті қазына»", channel: "Khabar TV", duration: "7:23", related: "alpamys" },
-  { id: "LrwaSHy-qPg", title: "«Алпамыс батыр» жыры", channel: "A. Mambetov theatre", duration: "12:55", related: "alpamys" },
-  { id: "BtzUKfpmJuM", title: "Алпамыс батыр жыры. Толық нұсқа", channel: "Aba Kaz", duration: "3:34:36", related: "alpamys" },
-  { id: "IDY6cC6O1GI", title: "«Ер Тарғын» жыры. «Қазақ әдебиеті»", channel: "Телерадиокомплекс Президента РК", duration: "9:54", related: "er-targyn" },
-  { id: "ZnVlPy6EkKI", title: "Ер Тарғын жыры", channel: "Aba Kaz", duration: "1:24:37", related: "er-targyn" },
-  { id: "ne1CH0yDu1o", title: "Раушан Оразбаева — «Қамбар батыр». «Халық қазынасы»", channel: "Khabar TV", duration: "3:07", related: "qambar" },
-  { id: "KntmRjDklQg", title: "Қамбар батыр. Аудиокітап, 1-бөлім", channel: "KazStory", duration: "48:49", related: "qambar" },
-  { id: "DBcoj9Dz4uc", title: "Қамбар батыр жыры", channel: "Aba Kaz", duration: "1:18:37", related: "qambar" },
-  { id: "su84TBkoNiY", title: "Ахмет Байтұрсынұлы. «Ер Сайын». 1-бөлім", channel: "Халық даналығы", duration: "24:56", related: "er-sayin" },
-  { id: "ZAJanEJv0ZY", title: "Ахмет Байтұрсынұлы. «Ер Сайын». 2-бөлім", channel: "Халық даналығы", duration: "24:53", related: "er-sayin" },
-  { id: "C17lj2wL7es", title: "Ер Сайын жыры", channel: "Baktybay Zhailau", duration: "46:20", related: "er-sayin" },
-  { id: "haQqJS1GF3A", title: "Абылай Бөріханов — «Ер Көкше». «Жеті қазына»", channel: "Khabar TV", duration: "7:05", related: "er-kokshe" },
-  { id: "BR27w3_dnSs", title: "Ер Көкше", channel: "Әзімхан Адай", duration: "21:05", related: "er-kokshe" },
-  { id: "_krJWxXOI88", title: "Уақ Көкше батыр жыры", channel: "Almas Qylysh", duration: "21:10", related: "er-kokshe" },
+  { id: "AcFxGAXvpe4", title: "Ербол Қуанбек — «Қобыланды батыр» жыры. «Жеті қазына»", channel: "Khabar TV", duration: "6:40", kind: "zhyr", related: "qobylandy" },
+  { id: "WgVccR6lHBg", title: "Қобыланды батыр жыры. Орындаған Абдуррахман Естайұлы", channel: "Дәрібаевтар ансамблі", duration: "2:50:45", kind: "zhyr", related: "qobylandy" },
+  { id: "VkOUlQ6hCOo", title: "Қобыланды батыр жыры. 1-бөлім", channel: "Aba Kaz", duration: "2:30:00", kind: "zhyr", related: "qobylandy" },
+  { id: "FHipeVonU8o", title: "Шаттық Уатқан — «Алпамыс батыр» жыры. «Жеті қазына»", channel: "Khabar TV", duration: "7:23", kind: "zhyr", related: "alpamys" },
+  { id: "LrwaSHy-qPg", title: "«Алпамыс батыр» жыры", channel: "A. Mambetov theatre", duration: "12:55", kind: "zhyr", related: "alpamys" },
+  { id: "BtzUKfpmJuM", title: "Алпамыс батыр жыры. Толық нұсқа", channel: "Aba Kaz", duration: "3:34:36", kind: "zhyr", related: "alpamys" },
+  { id: "IDY6cC6O1GI", title: "«Ер Тарғын» жыры. «Қазақ әдебиеті»", channel: "Телерадиокомплекс Президента РК", duration: "9:54", kind: "zhyr", related: "er-targyn" },
+  { id: "ZnVlPy6EkKI", title: "Ер Тарғын жыры", channel: "Aba Kaz", duration: "1:24:37", kind: "zhyr", related: "er-targyn" },
+  { id: "ne1CH0yDu1o", title: "Раушан Оразбаева — «Қамбар батыр». «Халық қазынасы»", channel: "Khabar TV", duration: "3:07", kind: "zhyr", related: "qambar" },
+  { id: "KntmRjDklQg", title: "Қамбар батыр. Аудиокітап, 1-бөлім", channel: "KazStory", duration: "48:49", kind: "zhyr", related: "qambar" },
+  { id: "DBcoj9Dz4uc", title: "Қамбар батыр жыры", channel: "Aba Kaz", duration: "1:18:37", kind: "zhyr", related: "qambar" },
+  { id: "su84TBkoNiY", title: "Ахмет Байтұрсынұлы. «Ер Сайын». 1-бөлім", channel: "Халық даналығы", duration: "24:56", kind: "zhyr", related: "er-sayin" },
+  { id: "ZAJanEJv0ZY", title: "Ахмет Байтұрсынұлы. «Ер Сайын». 2-бөлім", channel: "Халық даналығы", duration: "24:53", kind: "zhyr", related: "er-sayin" },
+  { id: "C17lj2wL7es", title: "Ер Сайын жыры", channel: "Baktybay Zhailau", duration: "46:20", kind: "zhyr", related: "er-sayin" },
+  { id: "haQqJS1GF3A", title: "Абылай Бөріханов — «Ер Көкше». «Жеті қазына»", channel: "Khabar TV", duration: "7:05", kind: "zhyr", related: "er-kokshe" },
+  { id: "BR27w3_dnSs", title: "Ер Көкше", channel: "Әзімхан Адай", duration: "21:05", kind: "zhyr", related: "er-kokshe" },
+  { id: "_krJWxXOI88", title: "Уақ Көкше батыр жыры", channel: "Almas Qylysh", duration: "21:10", kind: "zhyr", related: "er-kokshe" },
   { id: "qspNiXIGNbw", title: "Қарасай батыр", channel: "Білім және Мәдениет арнасы", duration: "20:02", related: "qarasay" },
   { id: "wLRf7F0a4Yw", title: "«Ұлы дала елі». Қарасай батыр", channel: "Bilim Madeniet", duration: "40:32", related: "qarasay" },
   { id: "5FkPeUvHcNY", title: "Қабанбай батыр. Деректі фильм", channel: "Abai TV", duration: "31:32", related: "kabanbay" },
@@ -49,6 +51,12 @@ export const CURATED_VIDEOS: Video[] = [
   { id: "z6vLw3psEv4", title: "Исатай–Махамбет көтерілісі", channel: "Қазақстан Тарихы", duration: "6:33", related: "isatay-makhambet" },
   { id: "VikfGQkpmEU", title: "1836–1838 жж. Исатай мен Махамбет бастаған көтеріліс", channel: "Тлеужан Ташимов", duration: "4:19", related: "isatay-makhambet" },
 ];
+
+/** Записи жыра — их собирает раздел «Аудио» */
+export const ZHYR_VIDEOS: Video[] = CURATED_VIDEOS.filter((v) => v.kind === "zhyr");
+
+/** Документальные фильмы и передачи — раздел «Бейне» */
+export const FILM_VIDEOS: Video[] = CURATED_VIDEOS.filter((v) => v.kind !== "zhyr");
 
 /** Ролики конкретного батыра или арки */
 export const videosFor = (id: string): Video[] => CURATED_VIDEOS.filter((v) => v.related === id);

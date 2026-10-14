@@ -16,6 +16,10 @@ import { KoshkarOrnament } from "@/components/ui";
 const NAV = [
   { href: "/", key: "nav.home" },
   { href: "/batyrs", key: "nav.batyrs" },
+  { href: "/comics", key: "nav.comics" },
+  { href: "/video", key: "nav.video" },
+  { href: "/audio", key: "nav.audio" },
+  { href: "/quiz", key: "nav.quiz" },
   { href: "/history", key: "nav.history" },
   { href: "/media", key: "nav.media" },
 ] as const;
@@ -62,7 +66,7 @@ export function SiteHeader() {
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-8 md:flex" aria-label="primary">
+        <nav className="hidden items-center gap-6 xl:flex" aria-label="primary">
           {NAV.map((item) => (
             <Link
               key={item.href}
@@ -125,7 +129,7 @@ export function SiteHeader() {
             onClick={() => setMenuPath((v) => (v === pathname ? null : pathname))}
             aria-label={t("nav.menu")}
             aria-expanded={menuOpen}
-            className="grid h-9 w-9 place-items-center rounded-full border border-line text-ink md:hidden"
+            className="grid h-9 w-9 place-items-center rounded-full border border-line text-ink xl:hidden"
           >
             <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2">
               {menuOpen ? <path d="M5 5l14 14M19 5L5 19" /> : <path d="M4 7h16M4 12h16M4 17h16" />}
@@ -141,7 +145,7 @@ export function SiteHeader() {
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="overflow-hidden border-t border-line bg-bg/95 md:hidden"
+            className="overflow-hidden border-t border-line bg-bg/95 xl:hidden"
             aria-label="mobile"
           >
             <div className="container-page flex flex-col gap-1 py-4">

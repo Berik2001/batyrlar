@@ -187,9 +187,46 @@ export function HomeView() {
     },
   ];
 
+  // Шесть разделов портала: имя остаётся латиницей во всех языках — это бренд
+  const SECTIONS = [
+    { name: "BATYR BIO", key: "section.bio", href: "/batyrs" },
+    { name: "BATYR COMICS", key: "section.comics", href: "/comics" },
+    { name: "BATYR VIDEO", key: "section.video", href: "/video" },
+    { name: "BATYR AUDIO", key: "section.audio", href: "/audio" },
+    { name: "BATYR QUIZ", key: "section.quiz", href: "/quiz" },
+    { name: "BATYR GALLERY", key: "section.gallery", href: "/media" },
+  ];
+
   return (
     <>
       <Hero />
+
+      {/* Шесть разделов портала */}
+      <section className="border-b border-line py-24">
+        <div className="container-page">
+          <SectionHead eyebrow={t("home.sections.eyebrow")} title={t("home.sections.title")} />
+          <p className="-mt-6 mb-10 max-w-2xl text-lead text-muted">{t("home.sections.lead")}</p>
+
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {SECTIONS.map((section, i) => (
+              <Reveal key={section.href} delay={i * 0.06}>
+                <Link
+                  href={section.href}
+                  className="group relative block h-full overflow-hidden rounded-[var(--radius-card)] border border-line bg-surface p-8 shadow-[var(--shadow-card)] transition-all hover:-translate-y-1 hover:border-gold hover:shadow-[var(--shadow-lift)]"
+                >
+                  <KoshkarOrnament className="pointer-events-none absolute -right-3 top-3 h-20 w-24 text-gold opacity-10 transition-opacity group-hover:opacity-25" />
+                  <span className="font-display text-2xl italic text-gold">{String(i + 1).padStart(2, "0")}</span>
+                  <h3 className="mt-3 font-display text-[1.6rem] uppercase tracking-[0.04em] text-ink">
+                    {section.name}
+                  </h3>
+                  <p className="mt-2 text-muted">{t(section.key)}</p>
+                  <span className="eyebrow mt-6 inline-block text-gold">→</span>
+                </Link>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
 
       <section className="py-24">
         <div className="container-page">
