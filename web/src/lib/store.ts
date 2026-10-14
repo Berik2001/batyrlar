@@ -83,11 +83,9 @@ export const useApp = create<AppState>((set, get) => ({
     if (get().hydrated) return;
     const storedLang = localStorage.getItem(LANG_KEY);
     const storedTheme = localStorage.getItem(THEME_KEY);
-    const theme: Theme = isTheme(storedTheme)
-      ? storedTheme
-      : matchMedia("(prefers-color-scheme: dark)").matches
-        ? "dark"
-        : "light";
+    // Светлая тема по умолчанию: системные настройки не учитываем,
+    // тёмную включает сам пользователь кнопкой в шапке
+    const theme: Theme = isTheme(storedTheme) ? storedTheme : "light";
     const lang: Lang = isLang(storedLang) ? storedLang : "kk";
     applyTheme(theme);
     document.documentElement.lang = lang;
@@ -99,7 +97,7 @@ export const useApp = create<AppState>((set, get) => ({
 export const THEME_INIT_SCRIPT = `
 (function(){try{
   var t=localStorage.getItem("${THEME_KEY}");
-  if(t!=="dark"&&t!=="light"){t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}
+  if(t!=="dark"&&t!=="light"){t="light";}
   if(t==="dark")document.documentElement.classList.add("dark");
   document.documentElement.style.colorScheme=t;
   var l=localStorage.getItem("${LANG_KEY}");
