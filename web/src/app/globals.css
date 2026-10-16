@@ -170,6 +170,15 @@ main:has([data-accent]) .bg-surface .bg-bg-2 {
   }
 }
 
+/* Книга комиксов (StPageFlip ставит страницам --left/--right):
+   тень у корешка и лёгкий обрез страниц по краю */
+.stf__item.--left:not([data-density="hard"]) {
+  box-shadow: inset -28px 0 32px -18px rgba(60, 38, 12, 0.45), inset 3px 0 0 #e6dcc6;
+}
+.stf__item.--right:not([data-density="hard"]) {
+  box-shadow: inset 28px 0 32px -18px rgba(60, 38, 12, 0.45), inset -3px 0 0 #e6dcc6;
+}
+
 /* Lenis: плавная прокрутка отключает нативный scroll-behavior */
 html.lenis,
 html.lenis body {

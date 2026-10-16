@@ -1,163 +1,107 @@
 "use client";
 
 /**
- * «Комикс»: сюжет жыра кадрами. Кадры читаются сверху вниз,
- * клик открывает кадр во весь экран — как разворот.
+ * «Комикс»: каждый сюжет — отдельная книжка. На странице видна обложка
+ * с корешком; по клику книга открывается во весь экран и листается
+ * (см. comic-book.tsx).
  */
 import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import NextImage from "next/image";
-import { AnimatePresence, motion } from "framer-motion";
 import { COMICS } from "@/data/comics";
 import { getBatyr } from "@/data/batyrs";
 import { useT } from "@/lib/use-t";
 import { KoshkarOrnament, PageHero, Reveal } from "@/components/ui";
+import { ComicBook } from "@/components/comic-book";
 import { lockScroll, unlockScroll } from "@/components/providers";
 
 export function ComicsView() {
-  const { t, pick } = useT();
-  const [open, setOpen] = useState<{ comic: number; panel: number } | null>(null);
-
+  const { t, pick, lang } = useT();
+  const [open, setOpen] = useState<number | null>(null);
   const close = useCallback(() => setOpen(null), []);
-  const move = useCallback(
-    (delta: number) =>
-      setOpen((v) => {
-        if (!v) return v;
-        const panels = COMICS[v.comic].panels.length;
-        return { ...v, panel: (v.panel + delta + panels) % panels };
-      }),
-    [],
-  );
 
   useEffect(() => {
-    if (open === null) {
-      unlockScroll();
-      return;
-    }
+    if (open === null) return;
     lockScroll();
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") close();
-      if (e.key === "ArrowLeft") move(-1);
-      if (e.key === "ArrowRight") move(1);
-    };
-    addEventListener("keydown", onKey);
-    return () => removeEventListener("keydown", onKey);
-  }, [open, close, move]);
-
-  const shown = open ? COMICS[open.comic].panels[open.panel] : null;
+    return () => unlockScroll();
+  }, [open]);
 
   return (
     <>
       <PageHero section="comics" eyebrow={t("page.comics.eyebrow")} title={t("page.comics.title")} lead={t("page.comics.lead")} />
 
-      {/* Комиксов стало несколько — даём переход сразу к нужному */}
-      <nav className="container-page flex flex-wrap gap-3 pt-10" aria-label="comics">
-        {COMICS.map((comic) => (
-          <a
-            key={comic.id}
-            href={`#${comic.id}`}
-            className="rounded-full border border-line bg-surface px-5 py-2 text-sm text-muted transition-colors hover:border-gold hover:text-gold"
-          >
-            {pick(comic.title)}
-          </a>
-        ))}
-      </nav>
+      <section className="container-page py-16">
+        <div className="grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
+          {COMICS.map((comic, i) => {
+            const batyr = getBatyr(comic.batyr);
+            return (
+              <Reveal key={comic.id} delay={(i % 3) * 0.08}>
+                <article id={comic.id} className="scroll-mt-24">
+                  {/* Обложка книги с корешком, при наведении приоткрывается */}
+                  <button
+                    type="button"
+                    onClick={() => setOpen(i)}
+                    aria-label={`${t("comics.open")}: ${pick(comic.title)}`}
+                    className="group block w-full cursor-pointer [perspective:1400px]"
+                  >
+                    <div className="relative mx-auto aspect-[3/4] w-[86%] transition-transform duration-700 ease-[cubic-bezier(.16,1,.3,1)] [transform-style:preserve-3d] [transform:rotateY(-14deg)] group-hover:[transform:rotateY(-26deg)_translateX(-4%)]">
+                      {/* Страницы, торчащие сбоку */}
+                      <span className="absolute inset-y-[2%] right-[-3%] w-[6%] rounded-r-sm bg-[repeating-linear-gradient(90deg,#efe6d4_0_2px,#d9cdb5_2px_3px)]" />
+                      <div className="absolute inset-0 overflow-hidden rounded-r-lg rounded-l-sm bg-[linear-gradient(135deg,#1d3a5f_0%,#0b1626_100%)] p-[7%] shadow-[18px_24px_40px_-14px_rgba(0,0,0,.85)]">
+                        <span className="absolute inset-y-0 left-0 w-[7%] bg-[linear-gradient(90deg,rgba(0,0,0,.45),rgba(255,255,255,.08)_60%,transparent)]" />
+                        <div className="relative flex h-full flex-col items-center rounded border-2 border-[#d6aa5c]/70 p-[6%] text-center">
+                          <p className="text-[0.6rem] font-bold uppercase tracking-[0.3em] text-[#f2cf85]">{t("nav.comics")}</p>
+                          <h2 className="mt-2 font-display text-[clamp(1.4rem,2.4vw,1.9rem)] font-bold leading-none text-[#f2cf85]">
+                            {pick(comic.title)}
+                          </h2>
+                          <div className="relative mt-4 w-full flex-1 overflow-hidden rounded-sm border-2 border-[#d6aa5c]/80">
+                            <NextImage
+                              src={comic.panels[0].src}
+                              alt=""
+                              fill
+                              sizes="(max-width: 640px) 80vw, 340px"
+                              className="object-cover transition-transform duration-700 group-hover:scale-105"
+                            />
+                          </div>
+                          <KoshkarOrnament className="mt-3 h-6 w-8 text-[#d6aa5c]" />
+                        </div>
+                      </div>
+                    </div>
+                  </button>
 
-      {COMICS.map((comic, comicIndex) => {
-        const batyr = getBatyr(comic.batyr);
-        return (
-          <section key={comic.id} id={comic.id} className="container-page scroll-mt-24 py-16">
-            <Reveal>
-              <div className="flex flex-wrap items-end justify-between gap-5">
-                <div>
-                  <p className="eyebrow flex items-center gap-3">
-                    <span className="h-px w-8 bg-gold" />
-                    {comic.panels.length} {t("comics.panels")}
-                  </p>
-                  <h2 className="mt-3 text-h2">{pick(comic.title)}</h2>
-                  <p className="mt-3 max-w-2xl text-lead text-muted">{pick(comic.lead)}</p>
-                </div>
-                {batyr && (
-                  <Link href={`/batyrs/${batyr.id}`} className="eyebrow text-gold">
-                    {t("comics.about")}: {pick(batyr.name)} →
-                  </Link>
-                )}
-              </div>
-            </Reveal>
+                  <div className="mt-8 text-center">
+                    <p className="eyebrow">
+                      {comic.panels.length} {t("comics.panels")}
+                    </p>
+                    <p className="mx-auto mt-2 max-w-sm text-muted">{pick(comic.lead)}</p>
+                    <div className="mt-5 flex flex-wrap items-center justify-center gap-4">
+                      <button
+                        type="button"
+                        onClick={() => setOpen(i)}
+                        className="cursor-pointer rounded-full [background-image:linear-gradient(180deg,#ffd978_0%,#f0b63f_55%,#d2902a_100%)] px-7 py-3 text-sm font-bold text-[#2a1b05] shadow-[0_12px_28px_-12px_rgba(0,0,0,.7)] transition-transform hover:scale-[1.04]"
+                      >
+                        📖 {t("comics.open")}
+                      </button>
+                      {batyr && (
+                        <Link href={`/batyrs/${batyr.id}`} className="text-sm text-dim hover:text-gold">
+                          {pick(batyr.name)} →
+                        </Link>
+                      )}
+                    </div>
+                  </div>
+                </article>
+              </Reveal>
+            );
+          })}
+        </div>
 
-            <div className="mt-10 grid gap-7 md:grid-cols-2">
-              {comic.panels.map((panel, panelIndex) => (
-                <Reveal key={panel.src} delay={panelIndex * 0.06}>
-                  <figure className="group h-full overflow-hidden rounded-[var(--radius-card)] border border-line bg-surface shadow-[var(--shadow-card)] transition-shadow hover:shadow-[var(--shadow-lift)]">
-                    <button
-                      type="button"
-                      onClick={() => setOpen({ comic: comicIndex, panel: panelIndex })}
-                      className="relative block aspect-3/2 w-full cursor-pointer overflow-hidden"
-                      aria-label={`${pick(comic.title)} — ${panelIndex + 1}`}
-                    >
-                      <NextImage
-                        src={panel.src}
-                        alt=""
-                        fill
-                        sizes="(max-width: 768px) 100vw, 50vw"
-                        className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
-                      />
-                      <span className="absolute left-4 top-4 grid h-9 w-9 place-items-center rounded-full border border-[rgba(214,170,92,.7)] bg-[rgba(7,14,24,.7)] font-display text-lg text-[#f2cf85]">
-                        {panelIndex + 1}
-                      </span>
-                    </button>
-                    <figcaption className="p-6 text-muted">{pick(panel.caption)}</figcaption>
-                  </figure>
-                </Reveal>
-              ))}
-            </div>
+        <p className="mt-16 flex items-center justify-center gap-3 text-center text-sm text-dim">
+          <KoshkarOrnament className="h-5 w-6 text-gold" />
+          {t("comics.note")}
+        </p>
+      </section>
 
-            <p className="mt-8 flex items-center gap-3 text-sm text-dim">
-              <KoshkarOrnament className="h-5 w-6 text-gold" />
-              {t("comics.note")}
-            </p>
-          </section>
-        );
-      })}
-
-      <p className="container-page pb-20 text-dim">{t("comics.more")}</p>
-
-      {/* Кадр во весь экран */}
-      <AnimatePresence>
-        {shown && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={close}
-            className="fixed inset-0 z-50 grid place-items-center bg-[rgb(var(--bg-rgb)/.96)] p-4 md:p-10"
-          >
-            <motion.figure
-              initial={{ scale: 0.97, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.97, opacity: 0 }}
-              onClick={(e) => e.stopPropagation()}
-              className="max-h-full w-full max-w-5xl overflow-y-auto"
-            >
-              <div className="relative aspect-3/2 w-full overflow-hidden rounded-[var(--radius-card)]">
-                <NextImage src={shown.src} alt="" fill sizes="100vw" className="object-contain" />
-              </div>
-              <figcaption className="mx-auto mt-5 max-w-3xl text-center text-muted">{pick(shown.caption)}</figcaption>
-              <div className="mt-6 flex items-center justify-center gap-6">
-                <button type="button" onClick={() => move(-1)} className="eyebrow cursor-pointer text-gold">
-                  ←
-                </button>
-                <button type="button" onClick={close} className="eyebrow cursor-pointer text-muted">
-                  Esc
-                </button>
-                <button type="button" onClick={() => move(1)} className="eyebrow cursor-pointer text-gold">
-                  →
-                </button>
-              </div>
-            </motion.figure>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {open !== null && <ComicBook key={`${COMICS[open].id}-${lang}`} comic={COMICS[open]} onClose={close} />}
     </>
   );
 }
