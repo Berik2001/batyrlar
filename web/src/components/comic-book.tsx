@@ -15,6 +15,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { getBatyr } from "@/data/batyrs";
 import type { Comic } from "@/data/comics";
+import { COMIC_STORIES } from "@/data/comic-stories";
 import { useT } from "@/lib/use-t";
 import { asset } from "@/lib/asset";
 import { KoshkarOrnament } from "@/components/ui";
@@ -192,23 +193,34 @@ export function ComicBook({ comic, onClose }: { comic: Comic; onClose: () => voi
           </div>
         </div>
 
-        {/* Кадры */}
-        {comic.panels.map((panel, i) => (
-          <div key={panel.src} className={paper}>
-            <div className="flex h-full flex-col p-[7%]">
-              <div className="relative aspect-[4/3] w-full overflow-hidden rounded-sm border-[3px] border-[#2a2117] shadow-[4px_4px_0_#2a2117]">
-                <img src={panel.src} alt="" className="absolute inset-0 h-full w-full object-cover" />
+        {/* Кадры. Размеры в cqw — от ширины страницы, чтобы текст
+            влезал одинаково и на развороте, и на телефоне */}
+        {comic.panels.map((panel, i) => {
+          const story = COMIC_STORIES[panel.src.split("/").pop() ?? ""];
+          return (
+            <div key={panel.src} className={paper}>
+              <div className="@container h-full">
+                <div className="flex h-full flex-col p-[6cqw]">
+                  <div className="relative aspect-[16/10] w-full shrink-0 overflow-hidden rounded-sm border-[3px] border-[#2a2117] shadow-[4px_4px_0_#2a2117]">
+                    <img src={panel.src} alt="" className="absolute inset-0 h-full w-full object-cover" />
+                  </div>
+                  <p className="mt-[4.5cqw] font-display text-[4.5cqw] font-semibold leading-[1.22] first-letter:float-left first-letter:mr-[1.2cqw] first-letter:mt-[.6cqw] first-letter:text-[2.35em] first-letter:leading-[.8] first-letter:text-[#a3202a]">
+                    {pick(panel.caption)}
+                  </p>
+                  {story && (
+                    <p className="mt-[2.6cqw] font-display text-[3.5cqw] leading-[1.36] text-[#4a3e30] [hyphens:auto] [text-align:justify]">
+                      {pick(story)}
+                    </p>
+                  )}
+                  <p className="mt-auto flex items-center justify-between border-t border-[#2a2117]/15 pt-[1.6cqw] text-[1.9cqw] uppercase tracking-[0.2em] text-[#8c7f6d]">
+                    <span>{pick(comic.title)}</span>
+                    <span className="tabular-nums">{i + 1}</span>
+                  </p>
+                </div>
               </div>
-              <p className="mt-[8%] font-display text-[clamp(1rem,2.2vw,1.55rem)] leading-snug first-letter:float-left first-letter:mr-2 first-letter:mt-1 first-letter:font-bold first-letter:text-[2.6em] first-letter:leading-[.8] first-letter:text-[#a3202a]">
-                {pick(panel.caption)}
-              </p>
-              <p className="mt-auto flex items-center justify-between border-t border-[#2a2117]/15 pt-2 text-[clamp(.5rem,1.1vw,.7rem)] uppercase tracking-[0.2em] text-[#8c7f6d]">
-                <span>{pick(comic.title)}</span>
-                <span className="tabular-nums">{i + 1}</span>
-              </p>
             </div>
-          </div>
-        ))}
+          );
+        })}
 
         {/* «Соңы» — только чтобы задняя обложка легла отдельно */}
         {withEnd && (
