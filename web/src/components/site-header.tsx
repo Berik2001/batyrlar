@@ -53,12 +53,12 @@ export function SiteHeader() {
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 backdrop-blur-xl transition-colors duration-300 ${
-        scrolled ? "bg-bg/85 border-b border-line" : "bg-bg/60"
+        scrolled ? "border-b border-white/10 bg-[#0b1626]/95" : "bg-[#0b1626]/80"
       }`}
     >
       <div className="container-page flex h-[var(--header-h)] items-center justify-between gap-6">
         <Link href="/" className="flex items-center gap-0 rounded-xl" aria-label="Batyrlar">
-          <span className="grid h-10 w-10 place-items-center rounded-l-xl bg-ink text-gold">
+          <span className="grid h-10 w-10 place-items-center rounded-l-xl bg-[#13243c] text-[#f2cf85]">
             <KoshkarOrnament className="h-5 w-6" />
           </span>
           <span className="rounded-r-xl bg-[linear-gradient(135deg,#f2cf85_0%,#d6aa5c_45%,#a8782f_100%)] px-3 py-2 font-display text-base font-semibold tracking-[0.14em] text-[#1a1208] sm:px-4 sm:text-xl sm:tracking-[0.18em]">
@@ -71,21 +71,20 @@ export function SiteHeader() {
             <Link
               key={item.href}
               href={item.href}
-              className={`relative text-xs font-bold uppercase tracking-[0.16em] transition-colors ${
-                isActive(item.href) ? "text-ink" : "text-muted hover:text-gold"
+              className={`relative rounded-full px-4 py-2 text-xs font-bold uppercase tracking-[0.14em] transition-colors ${
+                isActive(item.href)
+                  ? "border border-[#f2cf85]/60 text-[#f2cf85]"
+                  : "text-white/70 hover:text-[#f2cf85]"
               }`}
             >
               {t(item.key)}
-              {isActive(item.href) && (
-                <motion.span layoutId="nav-underline" className="absolute -bottom-2 left-0 h-px w-full bg-gold" />
-              )}
             </Link>
           ))}
         </nav>
 
         <div className="flex items-center gap-3">
           <div
-            className="hidden items-center rounded-full border border-line p-1 sm:flex"
+            className="hidden items-center rounded-full border border-white/20 p-1 sm:flex"
             role="group"
             aria-label={t("lang.label")}
           >
@@ -98,7 +97,7 @@ export function SiteHeader() {
                 className={`rounded-full px-2.5 py-1 text-[0.68rem] font-bold uppercase tracking-[0.12em] transition-colors ${
                   lang === code
                     ? "bg-[linear-gradient(135deg,#f2cf85_0%,#d6aa5c_45%,#a8782f_100%)] text-[#1a1208]"
-                    : "text-muted hover:text-gold"
+                    : "text-white/65 hover:text-[#f2cf85]"
                 }`}
               >
                 {code}
@@ -110,7 +109,7 @@ export function SiteHeader() {
             type="button"
             onClick={toggleTheme}
             aria-label={t("theme.toggle")}
-            className="grid h-9 w-9 place-items-center rounded-full border border-line text-gold transition-colors hover:border-gold"
+            className="grid h-9 w-9 place-items-center rounded-full border border-white/20 text-[#f2cf85] transition-colors hover:border-[#f2cf85]"
           >
             {theme === "dark" ? (
               <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2">
@@ -129,7 +128,7 @@ export function SiteHeader() {
             onClick={() => setMenuPath((v) => (v === pathname ? null : pathname))}
             aria-label={t("nav.menu")}
             aria-expanded={menuOpen}
-            className="grid h-9 w-9 place-items-center rounded-full border border-line text-ink xl:hidden"
+            className="grid h-9 w-9 place-items-center rounded-full border border-white/20 text-white xl:hidden"
           >
             <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2">
               {menuOpen ? <path d="M5 5l14 14M19 5L5 19" /> : <path d="M4 7h16M4 12h16M4 17h16" />}
@@ -145,7 +144,7 @@ export function SiteHeader() {
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="overflow-hidden border-t border-line bg-bg/95 xl:hidden"
+            className="overflow-hidden border-t border-white/10 bg-[#0b1626]/97 xl:hidden"
             aria-label="mobile"
           >
             <div className="container-page flex flex-col gap-1 py-4">
@@ -153,13 +152,13 @@ export function SiteHeader() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="rounded-xl px-2 py-3 font-display text-2xl text-ink"
+                  className="rounded-xl px-2 py-3 font-display text-2xl text-white"
                 >
                   {t(item.key)}
                 </Link>
               ))}
               {/* На узких экранах язык переключается здесь: в баре для него нет места */}
-              <div className="mt-3 flex gap-2 border-t border-line pt-4 sm:hidden" role="group" aria-label={t("lang.label")}>
+              <div className="mt-3 flex gap-2 border-t border-white/10 pt-4 sm:hidden" role="group" aria-label={t("lang.label")}>
                 {LANGS.map((code) => (
                   <button
                     key={code}
@@ -169,7 +168,7 @@ export function SiteHeader() {
                     className={`rounded-full px-4 py-2 text-xs font-bold uppercase tracking-[0.12em] transition-colors ${
                       lang === code
                         ? "bg-[linear-gradient(135deg,#f2cf85_0%,#d6aa5c_45%,#a8782f_100%)] text-[#1a1208]"
-                        : "border border-line text-muted"
+                        : "border border-white/20 text-white/70"
                     }`}
                   >
                     {code}

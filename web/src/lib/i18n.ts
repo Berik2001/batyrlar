@@ -176,6 +176,19 @@ const KK = {
   "video.loading": "Плеер жүктелуде…",
   "video.blocked": "Плеер ашылмады. Браузердегі кеңейтім YouTube-ті бөгеп тұрған болуы мүмкін.",
   "video.notOpening": "Ашылмай тұр ма?",
+  "card.batyrs": "Қазақтың әйгілі батырларымен таныс!",
+  "card.audio": "Жырды жыршы орындауында тыңда!",
+  "card.comics": "Сүйікті оқиғаларды комикс түрінде оқы!",
+  "card.quiz": "Ойнап, білімінді сына!",
+  "hero.enter": "Батырлар әлеміне кір!",
+  "feat.eyebrow": "Жобаның мақсаты",
+  "feat.title": "Batyrlar порталы",
+  "feat.one": "Бір платформада батырлар, жыр және комикстер!",
+  "feat.two": "Ойын арқылы үйрену мүмкіндігі!",
+  "feat.three": "Оқушыларға арналған интерактивті мазмұн!",
+  "feat.four": "Кез келген құрылғыдан оңай қол жеткізу!",
+  "scene.eyebrow": "3D сахна",
+  "scene.title": "Батырлар шеңбері",
 };
 
 /** Ключ строки интерфейса: выводится из казахского словаря — он эталонный. */
@@ -349,6 +362,19 @@ const RU: Dictionary = {
   "video.loading": "Плеер загружается…",
   "video.blocked": "Плеер не открылся. Возможно, расширение браузера блокирует YouTube.",
   "video.notOpening": "Не открывается?",
+  "card.batyrs": "Познакомься со знаменитыми батырами!",
+  "card.audio": "Слушай жыр в исполнении жыршы!",
+  "card.comics": "Читай любимые истории в виде комикса!",
+  "card.quiz": "Играй и проверь свои знания!",
+  "hero.enter": "Войти в мир батыров!",
+  "feat.eyebrow": "О проекте",
+  "feat.title": "Портал Batyrlar",
+  "feat.one": "Батыры, жыр и комиксы — на одной платформе!",
+  "feat.two": "Возможность учиться через игру!",
+  "feat.three": "Интерактивный контент для школьников!",
+  "feat.four": "Удобный доступ с любого устройства!",
+  "scene.eyebrow": "3D-сцена",
+  "scene.title": "Круг батыров",
 };
 
 const EN: Dictionary = {
@@ -516,6 +542,19 @@ const EN: Dictionary = {
   "video.loading": "Loading the player…",
   "video.blocked": "The player did not open. A browser extension may be blocking YouTube.",
   "video.notOpening": "Not opening?",
+  "card.batyrs": "Meet the famous batyrs of the steppe!",
+  "card.audio": "Hear the epics sung by a zhyrau!",
+  "card.comics": "Read the stories as comics!",
+  "card.quiz": "Play and test what you know!",
+  "hero.enter": "Enter the world of the batyrs!",
+  "feat.eyebrow": "About the project",
+  "feat.title": "The Batyrlar portal",
+  "feat.one": "Batyrs, epics and comics on one platform!",
+  "feat.two": "Learning through play!",
+  "feat.three": "Interactive content for school students!",
+  "feat.four": "Easy access from any device!",
+  "scene.eyebrow": "3D scene",
+  "scene.title": "The circle of batyrs",
 };
 
 export const DICT: Record<Lang, Dictionary> = { kk: KK, ru: RU, en: EN };
