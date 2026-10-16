@@ -194,7 +194,7 @@ export function PageHero({
   lead?: string;
 }) {
   return (
-    <section data-accent={section} className="relative isolate overflow-hidden">
+    <section data-accent={section} className="relative isolate overflow-hidden pt-[var(--header-h)]">
       <div className="relative min-h-[clamp(380px,58svh,620px)] w-full">
         <NextImage
           src={asset(`/img/hero-${section}.jpg`)}
@@ -202,7 +202,7 @@ export function PageHero({
           fill
           priority
           sizes="100vw"
-          className="object-cover object-right"
+          className="object-cover object-[right_top]"
         />
         <div className="absolute inset-0 bg-[linear-gradient(100deg,rgba(9,20,36,.94)_0%,rgba(9,20,36,.78)_36%,rgba(9,20,36,.2)_62%,transparent_80%)]" />
         <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-bg to-transparent" />

@@ -10,7 +10,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: PageProps<"/batyrs/[id]">): Promise<Metadata> {
   const { id } = await params;
   const batyr = getBatyr(id);
-  if (!batyr) return { title: "Batyrlar" };
+  if (!batyr) return { title: "Batyrverse" };
   return { title: batyr.name.kk, description: batyr.bio.kk };
 }
 

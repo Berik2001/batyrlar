@@ -15,7 +15,7 @@ import { asset } from "@/lib/asset";
 function QuestHero() {
   const { t } = useT();
   return (
-    <section className="relative isolate overflow-hidden">
+    <section className="relative isolate overflow-hidden pt-[var(--header-h)]">
       <div className="relative min-h-[76svh] w-full">
         <NextImage
           src={asset("/img/hero-quest.jpg")}
@@ -23,7 +23,7 @@ function QuestHero() {
           fill
           priority
           sizes="100vw"
-          className="object-cover object-right"
+          className="object-cover object-[right_top] max-sm:object-[76%_top]"
         />
         {/* Вуаль слева направо: заголовок читается поверх неба */}
         <div className="absolute inset-0 bg-[linear-gradient(100deg,rgba(9,20,36,.92)_0%,rgba(9,20,36,.75)_38%,rgba(9,20,36,.15)_62%,transparent_80%)]" />
@@ -33,8 +33,8 @@ function QuestHero() {
             <p className="text-[0.72rem] font-bold uppercase tracking-[0.22em] text-[#f2cf85]">
               {t("hero.eyebrow")}
             </p>
-            <h1 className="mt-4 font-display text-[clamp(3rem,9vw,6.5rem)] font-bold leading-[0.92] text-transparent [-webkit-background-clip:text] [-webkit-text-stroke:1px_rgba(255,255,255,.18)] [background-clip:text] [background-image:linear-gradient(180deg,#ffe9b0_0%,#f2cf85_38%,#c8922f_100%)] [text-shadow:0_8px_30px_rgba(0,0,0,.45)]">
-              BATYRLAR
+            <h1 className="mt-4 font-display text-[clamp(2.5rem,8.4vw,5.6rem)] font-bold leading-[0.92] text-transparent [-webkit-background-clip:text] [-webkit-text-stroke:1px_rgba(255,255,255,.18)] [background-clip:text] [background-image:linear-gradient(180deg,#ffe9b0_0%,#f2cf85_38%,#c8922f_100%)] [text-shadow:0_8px_30px_rgba(0,0,0,.45)]">
+              BATYRVERSE
             </h1>
             <p className="mt-4 font-display text-[clamp(1.4rem,3vw,2.1rem)] italic text-[#f6efe2]">
               {t("hero.slogan")}
@@ -92,8 +92,8 @@ function QuestCards() {
                   </span>
                 </div>
                 <div className="absolute inset-y-0 right-0 w-[52%]">
-                  <NextImage src={asset(card.img)} alt="" fill sizes="(max-width:1024px) 50vw, 240px" className="object-cover" />
-                  <span className="absolute inset-0" style={{ background: `linear-gradient(90deg, ${card.from} 0%, transparent 55%)` }} />
+                  <NextImage src={asset(card.img)} alt="" fill sizes="(max-width:1024px) 50vw, 240px" className="object-cover object-top" />
+                  <span className="absolute inset-0" style={{ background: `linear-gradient(90deg, ${card.from} 0%, transparent 28%)` }} />
                 </div>
               </Link>
             </Reveal>

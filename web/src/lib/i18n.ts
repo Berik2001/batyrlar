@@ -12,7 +12,7 @@ export type { Lang };
 export const LANGS: readonly Lang[] = ["kk", "ru", "en"];
 
 const KK = {
-  "meta.title": "Batyrlar.com — Ерлер елі",
+  "meta.title": "Batyrverse — Ерлер елі",
   "nav.home": "Басты бет",
   "nav.batyrs": "Батырлар",
   "nav.history": "Тарих",
@@ -185,7 +185,7 @@ const KK = {
   "card.quiz": "Ойнап, білімінді сына!",
   "hero.enter": "Батырлар әлеміне кір!",
   "feat.eyebrow": "Жобаның мақсаты",
-  "feat.title": "Batyrlar порталы",
+  "feat.title": "Batyrverse порталы",
   "feat.one": "Бір платформада батырлар, жыр және комикстер!",
   "feat.two": "Ойын арқылы үйрену мүмкіндігі!",
   "feat.three": "Оқушыларға арналған интерактивті мазмұн!",
@@ -201,7 +201,7 @@ export type TranslationKey = keyof typeof KK;
 export type Dictionary = Record<TranslationKey, string>;
 
 const RU: Dictionary = {
-  "meta.title": "Batyrlar.com — Страна героев",
+  "meta.title": "Batyrverse — Страна героев",
   "nav.home": "Главная",
   "nav.batyrs": "Батыры",
   "nav.history": "История",
@@ -374,7 +374,7 @@ const RU: Dictionary = {
   "card.quiz": "Играй и проверь свои знания!",
   "hero.enter": "Войти в мир батыров!",
   "feat.eyebrow": "О проекте",
-  "feat.title": "Портал Batyrlar",
+  "feat.title": "Портал Batyrverse",
   "feat.one": "Батыры, жыр и комиксы — на одной платформе!",
   "feat.two": "Возможность учиться через игру!",
   "feat.three": "Интерактивный контент для школьников!",
@@ -384,7 +384,7 @@ const RU: Dictionary = {
 };
 
 const EN: Dictionary = {
-  "meta.title": "Batyrlar.com — Land of Heroes",
+  "meta.title": "Batyrverse — Land of Heroes",
   "nav.home": "Home",
   "nav.batyrs": "Batyrs",
   "nav.history": "History",
@@ -557,7 +557,7 @@ const EN: Dictionary = {
   "card.quiz": "Play and test what you know!",
   "hero.enter": "Enter the world of the batyrs!",
   "feat.eyebrow": "About the project",
-  "feat.title": "The Batyrlar portal",
+  "feat.title": "The Batyrverse portal",
   "feat.one": "Batyrs, epics and comics on one platform!",
   "feat.two": "Learning through play!",
   "feat.three": "Interactive content for school students!",

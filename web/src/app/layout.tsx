@@ -29,21 +29,21 @@ export const metadata: Metadata = {
   // Нужен, чтобы og:image отдавался абсолютной ссылкой
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://batyrlar.example"),
   title: {
-    default: "Batyrlar — қазақ батырларының порталы",
-    template: "%s · Batyrlar",
+    default: "Batyrverse — қазақ батырларының порталы",
+    template: "%s · Batyrverse",
   },
   description: DESCRIPTION,
   // Картинку превью Next подхватывает сам из app/opengraph-image.jpg
   openGraph: {
     type: "website",
-    siteName: "Batyrlar",
-    title: "Batyrlar — қазақ батырларының порталы",
+    siteName: "Batyrverse",
+    title: "Batyrverse — қазақ батырларының порталы",
     description: DESCRIPTION,
     locale: "kk_KZ",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Batyrlar — қазақ батырларының порталы",
+    title: "Batyrverse — қазақ батырларының порталы",
     description: DESCRIPTION,
   },
 };

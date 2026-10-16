@@ -145,7 +145,7 @@ function buildItems(videos: Video[]): Item[] {
       cat: "art",
       src: asset("/img/hero.jpg"),
       title: { kk: "Дала күзетшісі", ru: "Страж степи", en: "Guardian of the Steppe" },
-      caption: { kk: "Batyrlar.com басты бетінің арты", ru: "Главный арт Batyrlar.com", en: "Batyrlar.com key art" },
+      caption: { kk: "Batyrverse басты бетінің арты", ru: "Главный арт Batyrverse", en: "Batyrverse key art" },
     },
     ...ARCS.map((arc) => ({
       id: `arc-${arc.id}`,

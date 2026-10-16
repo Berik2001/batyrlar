@@ -162,7 +162,7 @@ export function ComicBook({ comic, onClose }: { comic: Comic; onClose: () => voi
           <div className="flex h-full flex-col items-center p-[7%] text-center">
             <div className="flex h-full w-full flex-col items-center rounded-md border-2 border-[#d6aa5c]/70 p-[6%] outline outline-1 outline-offset-4 outline-[#d6aa5c]/40">
               <p className="text-[clamp(.55rem,1.4vw,.75rem)] font-bold uppercase tracking-[0.3em] text-[#f2cf85]">
-                Batyrlar · {t("nav.comics")}
+                Batyrverse · {t("nav.comics")}
               </p>
               <h2 className="mt-[6%] font-display text-[clamp(1.4rem,4vw,2.6rem)] font-bold leading-none text-[#f2cf85]">
                 {pick(comic.title)}
@@ -241,7 +241,7 @@ export function ComicBook({ comic, onClose }: { comic: Comic; onClose: () => voi
         <div data-density="hard" className="overflow-hidden rounded-l-md bg-[linear-gradient(225deg,#1d3a5f_0%,#0b1626_100%)]">
           <div className="flex h-full flex-col items-center justify-center gap-4 p-[10%] text-center">
             <img src={asset("/icon.svg")} alt="" className="h-14 w-14 opacity-90" />
-            <p className="font-display text-xl tracking-[0.2em] text-[#f2cf85]">BATYRLAR</p>
+            <p className="font-display text-xl tracking-[0.2em] text-[#f2cf85]">BATYRVERSE</p>
           </div>
         </div>
       </div>

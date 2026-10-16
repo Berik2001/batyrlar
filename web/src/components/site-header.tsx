@@ -57,12 +57,12 @@ export function SiteHeader() {
       }`}
     >
       <div className="container-page flex h-[var(--header-h)] items-center justify-between gap-6">
-        <Link href="/" className="flex items-center gap-0 rounded-xl" aria-label="Batyrlar">
+        <Link href="/" className="flex items-center gap-0 rounded-xl" aria-label="Batyrverse">
           <span className="grid h-10 w-10 place-items-center rounded-l-xl bg-[#13243c] text-[#f2cf85]">
             <KoshkarOrnament className="h-5 w-6" />
           </span>
           <span className="rounded-r-xl bg-[linear-gradient(135deg,#f2cf85_0%,#d6aa5c_45%,#a8782f_100%)] px-3 py-2 font-display text-base font-semibold tracking-[0.14em] text-[#1a1208] sm:px-4 sm:text-xl sm:tracking-[0.18em]">
-            BATYRLAR
+            BATYRVERSE
           </span>
         </Link>
 

@@ -31,7 +31,7 @@ export function SiteFooter() {
               <KoshkarOrnament className="h-5 w-6" />
             </span>
             <span className="rounded-r-xl bg-[linear-gradient(135deg,#f2cf85_0%,#d6aa5c_45%,#a8782f_100%)] px-4 py-2 font-display text-xl font-semibold tracking-[0.18em] text-[#1a1208]">
-              BATYRLAR
+              BATYRVERSE
             </span>
           </div>
           <p className="mt-5 max-w-[34ch] text-muted">{t("footer.tagline")}</p>
@@ -71,7 +71,7 @@ export function SiteFooter() {
       </div>
 
       <div className="container-page flex flex-wrap justify-between gap-3 border-t border-line py-6 text-sm text-dim">
-        <p>© {new Date().getFullYear()} Batyrlar.com. {t("footer.rights")}</p>
+        <p>© {new Date().getFullYear()} Batyrverse. {t("footer.rights")}</p>
         <p>{t("footer.note")}</p>
       </div>
     </footer>
