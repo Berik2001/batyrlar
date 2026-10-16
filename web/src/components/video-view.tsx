@@ -39,7 +39,7 @@ export function VideoView() {
 
   return (
     <>
-      <PageHero eyebrow={t("page.video.eyebrow")} title={t("page.video.title")} lead={t("page.video.lead")} />
+      <PageHero section="video" eyebrow={t("page.video.eyebrow")} title={t("page.video.title")} lead={t("page.video.lead")} />
 
       <section className="container-page py-16">
         <p className="eyebrow">{t("video.count", { n: FILM_VIDEOS.length })}</p>

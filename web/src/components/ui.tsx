@@ -9,6 +9,7 @@ import NextImage from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import type { Batyr } from "@/data/batyrs";
 import { useT } from "@/lib/use-t";
+import { asset } from "@/lib/asset";
 
 /* ---------------- Орнаменты ---------------- */
 
@@ -173,33 +174,49 @@ export function SectionHead({
 
 /* ---------------- Шапка внутренней страницы ---------------- */
 
+/** Разделы сайта: у каждого свой цвет (как карточки на главной) и своя иллюстрация */
+export type SectionKey = "batyrs" | "comics" | "video" | "audio" | "quiz" | "history" | "media";
+
+/**
+ * Обложка раздела в стиле главной: иллюстрация во всю ширину, вуаль слева,
+ * крупный золотой заголовок. Атрибут data-accent подхватывает globals.css
+ * и перекрашивает карточки всей страницы в цвет раздела.
+ */
 export function PageHero({
+  section,
   eyebrow,
   title,
   lead,
-  image,
 }: {
+  section: SectionKey;
   eyebrow: string;
   title: string;
   lead?: string;
-  image?: string;
 }) {
   return (
-    <section className="relative overflow-hidden border-b border-line bg-bg-2 pb-16 pt-[calc(var(--header-h)+64px)]">
-      {image && (
-        <>
-          <NextImage src={image} alt="" fill priority sizes="100vw" className="object-cover opacity-30" />
-          <div className="absolute inset-0 bg-gradient-to-t from-bg-2 via-bg-2/70 to-bg-2/30" />
-        </>
-      )}
-      <RosetteOrnament className="pointer-events-none absolute -right-16 -top-10 h-80 w-80 text-gold opacity-10" />
-      <div className="container-page relative">
-        <p className="eyebrow flex items-center gap-3">
-          <span className="h-px w-8 bg-gold" />
-          {eyebrow}
-        </p>
-        <h1 className="mt-4 text-h1 text-gradient-gold">{title}</h1>
-        {lead && <p className="mt-4 max-w-xl text-lead text-muted">{lead}</p>}
+    <section data-accent={section} className="relative isolate overflow-hidden">
+      <div className="relative min-h-[clamp(380px,58svh,620px)] w-full">
+        <NextImage
+          src={asset(`/img/hero-${section}.jpg`)}
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-right"
+        />
+        <div className="absolute inset-0 bg-[linear-gradient(100deg,rgba(9,20,36,.94)_0%,rgba(9,20,36,.78)_36%,rgba(9,20,36,.2)_62%,transparent_80%)]" />
+        <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-bg to-transparent" />
+
+        <div className="container-page relative flex min-h-[clamp(380px,58svh,620px)] flex-col justify-center py-20">
+          <Reveal className="max-w-2xl">
+            <p className="text-[0.72rem] font-bold uppercase tracking-[0.22em] text-[#f2cf85]">{eyebrow}</p>
+            <h1 className="mt-4 font-display text-[clamp(2.8rem,7vw,5.4rem)] font-bold leading-[0.95] text-transparent [-webkit-background-clip:text] [background-clip:text] [background-image:linear-gradient(180deg,#ffe9b0_0%,#f2cf85_38%,#c8922f_100%)] [filter:drop-shadow(0_8px_24px_rgba(0,0,0,.45))]">
+              {title}
+            </h1>
+            <span className="mt-5 block h-1.5 w-24 rounded-full bg-[var(--accent)]" />
+            {lead && <p className="mt-5 max-w-xl text-lg text-[#cfdbe9]">{lead}</p>}
+          </Reveal>
+        </div>
       </div>
     </section>
   );

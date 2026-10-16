@@ -80,6 +80,40 @@
   --grad-gold-text: linear-gradient(180deg, #f6dda8 0%, #e5bd72 50%, #c3913c 100%);
 }
 
+/* ==========================================================================
+   Цвет раздела. Обложка страницы несёт data-accent, и через :has() вся
+   страница получает свой оттенок: карточки — цвета раздела, как на главной.
+   ========================================================================== */
+main { --accent: #c8342c; --accent-deep: #5f0f16; }
+main:has([data-accent="batyrs"]) { --accent: #a3202a; --accent-deep: #5f0f16; }
+main:has([data-accent="audio"]) { --accent: #1d55a6; --accent-deep: #0e2a58; }
+main:has([data-accent="comics"]) { --accent: #13694a; --accent-deep: #0a3f2c; }
+main:has([data-accent="quiz"]) { --accent: #5d2f90; --accent-deep: #331854; }
+main:has([data-accent="video"]) { --accent: #b8501c; --accent-deep: #5e2508; }
+main:has([data-accent="history"]) { --accent: #9a6416; --accent-deep: #4d300a; }
+main:has([data-accent="media"]) { --accent: #0f7480; --accent-deep: #073a41; }
+
+main:has([data-accent]) {
+  --color-surface: color-mix(in srgb, var(--accent) 42%, #0b1626);
+  --color-surface-2: color-mix(in srgb, var(--accent) 55%, #0b1626);
+  --color-bg-2: color-mix(in srgb, var(--accent) 22%, #0b1626);
+  --color-line: rgba(255, 255, 255, 0.14);
+  --color-line-strong: rgba(255, 255, 255, 0.32);
+  --color-muted: #dfe5ef;
+  --color-dim: #b4c0d2;
+  --radius-card: 28px;
+  --shadow-card: 0 18px 40px -20px rgba(0, 0, 0, 0.9);
+  --shadow-lift: 0 28px 56px -20px rgba(0, 0, 0, 0.95);
+}
+/* Карточки раздела — сочный градиент, как цветные карточки на главной */
+main:has([data-accent]) .bg-surface {
+  background-image: linear-gradient(135deg, var(--accent) 0%, var(--accent-deep) 100%);
+}
+/* Вложенные плашки внутри карточки — тёмное стекло поверх градиента */
+main:has([data-accent]) .bg-surface .bg-bg-2 {
+  background-color: rgba(6, 13, 24, 0.38);
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;

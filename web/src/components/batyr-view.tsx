@@ -9,7 +9,8 @@ import NextImage from "next/image";
 import { BATYRS, getBatyr } from "@/data/batyrs";
 import { videosFor } from "@/data/videos";
 import { useT } from "@/lib/use-t";
-import { BatyrCard, KoshkarOrnament, Reveal, RosetteOrnament } from "@/components/ui";
+import { BatyrCard, KoshkarOrnament, Reveal } from "@/components/ui";
+import { asset } from "@/lib/asset";
 import { VideoList } from "@/components/video-list";
 
 export function BatyrView({ id }: { id: string }) {
@@ -38,8 +39,11 @@ export function BatyrView({ id }: { id: string }) {
   return (
     <>
       {/* Шапка с портретом */}
-      <section className="relative overflow-hidden border-b border-line bg-bg-2 pb-16 pt-[calc(var(--header-h)+48px)]">
-        <RosetteOrnament className="pointer-events-none absolute -left-24 top-10 h-96 w-96 text-gold opacity-[0.07]" />
+      <section data-accent="batyrs" className="relative isolate overflow-hidden pb-16 pt-[calc(var(--header-h)+48px)]">
+        {/* Фон как у обложек разделов: иллюстрация под красно-синей вуалью */}
+        <NextImage src={asset("/img/hero-batyrs.jpg")} alt="" fill priority sizes="100vw" className="-z-10 object-cover object-right opacity-60" />
+        <div className="absolute inset-0 -z-10 bg-[linear-gradient(110deg,rgba(9,20,36,.96)_0%,rgba(95,15,22,.85)_45%,rgba(163,32,42,.45)_100%)]" />
+        <div className="absolute inset-x-0 bottom-0 -z-10 h-24 bg-gradient-to-t from-bg to-transparent" />
         <div className="container-page grid gap-12 lg:grid-cols-[minmax(0,420px)_1fr]">
           <Reveal className="relative">
             <div className="relative aspect-3/4 overflow-hidden rounded-[var(--radius-card)] shadow-[var(--shadow-lift)]">
@@ -78,7 +82,7 @@ export function BatyrView({ id }: { id: string }) {
               {t(`type.${batyr.type}`)}
             </span>
 
-            <h1 className="mt-4 text-h1">{pick(batyr.name)}</h1>
+            <h1 className="mt-4 font-display text-[clamp(2.8rem,6.5vw,5rem)] font-bold leading-[0.95] text-transparent [-webkit-background-clip:text] [background-clip:text] [background-image:linear-gradient(180deg,#ffe9b0_0%,#f2cf85_38%,#c8922f_100%)] [filter:drop-shadow(0_8px_24px_rgba(0,0,0,.45))]">{pick(batyr.name)}</h1>
             <p className="mt-2 font-display text-2xl italic text-gold">{pick(batyr.epithet)}</p>
 
             <dl className="mt-8 max-w-2xl">

@@ -239,7 +239,7 @@ export function MediaView({ videos }: { videos: Video[] }) {
 
   return (
     <>
-      <PageHero eyebrow={t("page.media.eyebrow")} title={t("page.media.title")} lead={t("page.media.lead")} />
+      <PageHero section="media" eyebrow={t("page.media.eyebrow")} title={t("page.media.title")} lead={t("page.media.lead")} />
 
       <section className="container-page py-14">
         <div className="mb-8 flex flex-wrap gap-2">

@@ -31,15 +31,15 @@ export function AudioView() {
 
   return (
     <>
-      <PageHero eyebrow={t("page.audio.eyebrow")} title={t("page.audio.title")} lead={t("page.audio.lead")} />
+      <PageHero section="audio" eyebrow={t("page.audio.eyebrow")} title={t("page.audio.title")} lead={t("page.audio.lead")} />
 
       <section className="container-page py-16">
         <p className="eyebrow">{t("audio.count", { n: ZHYR_VIDEOS.length })}</p>
 
-        <div className="mt-8 grid gap-6">
+        <div className="mt-8 grid grid-cols-[minmax(0,1fr)] gap-6">
           {list.map((group, i) => (
             <Reveal key={group.batyr.id} delay={i * 0.05}>
-              <article className="grid gap-8 rounded-[var(--radius-card)] border border-line bg-surface p-6 shadow-[var(--shadow-card)] md:grid-cols-[minmax(0,260px)_1fr] md:p-8">
+              <article className="grid grid-cols-[minmax(0,1fr)] gap-8 rounded-[var(--radius-card)] border border-line bg-surface p-6 shadow-[var(--shadow-card)] md:grid-cols-[minmax(0,260px)_minmax(0,1fr)] md:p-8">
                 {/* Батыр и строки из жыра */}
                 <div>
                   <div className="flex items-center gap-4">
@@ -69,7 +69,7 @@ export function AudioView() {
                 </div>
 
                 {/* Записи */}
-                <ul className="grid gap-3">
+                <ul className="grid min-w-0 grid-cols-[minmax(0,1fr)] gap-3">
                   {group.videos.map((video) => {
                     const isPlaying = playing === video.id;
                     return (
@@ -81,7 +81,7 @@ export function AudioView() {
                             aria-label={`${t("audio.play")}: ${video.title}`}
                             className={`grid h-11 w-11 shrink-0 cursor-pointer place-items-center rounded-full border transition-colors ${
                               isPlaying
-                                ? "border-gold bg-[var(--grad-gold)] text-[#1a1208]"
+                                ? "border-gold [background-image:var(--grad-gold)] text-[#1a1208]"
                                 : "border-line text-gold hover:border-gold"
                             }`}
                           >

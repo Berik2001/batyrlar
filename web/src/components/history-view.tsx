@@ -18,11 +18,10 @@ export function HistoryView() {
 
   return (
     <>
-      <PageHero
+      <PageHero section="history"
         eyebrow={t("page.history.eyebrow")}
         title={t("page.history.title")}
         lead={t("page.history.lead")}
-        image={ARCS[0].image}
       />
 
       <section className="container-page py-16">

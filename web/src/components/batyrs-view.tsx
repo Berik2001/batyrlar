@@ -61,7 +61,7 @@ export function BatyrsView() {
 
   return (
     <>
-      <PageHero
+      <PageHero section="batyrs"
         eyebrow={t("page.batyrs.eyebrow")}
         title={t("page.batyrs.title")}
         lead={t("page.batyrs.lead")}

@@ -64,7 +64,7 @@ export function QuizView() {
 
   return (
     <>
-      <PageHero eyebrow={t("page.quiz.eyebrow")} title={t("page.quiz.title")} lead={t("page.quiz.lead")} />
+      <PageHero section="quiz" eyebrow={t("page.quiz.eyebrow")} title={t("page.quiz.title")} lead={t("page.quiz.lead")} />
 
       <section className="container-page py-16">
         {/* Заставка */}
@@ -75,7 +75,7 @@ export function QuizView() {
             <button
               type="button"
               onClick={start}
-              className="mt-8 cursor-pointer rounded-full bg-[var(--grad-gold)] px-9 py-3.5 text-[0.72rem] font-bold uppercase tracking-[0.16em] text-[#1a1208] shadow-[var(--shadow-card)] transition-transform hover:scale-[1.03]"
+              className="mt-8 cursor-pointer rounded-full [background-image:var(--grad-gold)] px-9 py-3.5 text-[0.72rem] font-bold uppercase tracking-[0.16em] text-[#1a1208] shadow-[var(--shadow-card)] transition-transform hover:scale-[1.03]"
             >
               {t("quiz.start")}
             </button>
@@ -93,7 +93,7 @@ export function QuizView() {
             </div>
             <div className="mt-3 h-1 w-full overflow-hidden rounded-full bg-line">
               <motion.div
-                className="h-full bg-[var(--grad-gold)]"
+                className="h-full [background-image:var(--grad-gold)]"
                 initial={false}
                 animate={{ width: `${((step + (picked === null ? 0 : 1)) / total) * 100}%` }}
                 transition={{ duration: 0.4, ease: "easeOut" }}
@@ -150,7 +150,7 @@ export function QuizView() {
                       <button
                         type="button"
                         onClick={next}
-                        className="cursor-pointer rounded-full bg-[var(--grad-gold)] px-8 py-3 text-[0.72rem] font-bold uppercase tracking-[0.16em] text-[#1a1208] transition-transform hover:scale-[1.03]"
+                        className="cursor-pointer rounded-full [background-image:var(--grad-gold)] px-8 py-3 text-[0.72rem] font-bold uppercase tracking-[0.16em] text-[#1a1208] transition-transform hover:scale-[1.03]"
                       >
                         {step + 1 === total ? t("quiz.finish") : t("quiz.next")}
                       </button>
@@ -181,7 +181,7 @@ export function QuizView() {
               <button
                 type="button"
                 onClick={start}
-                className="cursor-pointer rounded-full bg-[var(--grad-gold)] px-8 py-3 text-[0.72rem] font-bold uppercase tracking-[0.16em] text-[#1a1208] transition-transform hover:scale-[1.03]"
+                className="cursor-pointer rounded-full [background-image:var(--grad-gold)] px-8 py-3 text-[0.72rem] font-bold uppercase tracking-[0.16em] text-[#1a1208] transition-transform hover:scale-[1.03]"
               >
                 {t("quiz.again")}
               </button>

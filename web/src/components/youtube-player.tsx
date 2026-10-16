@@ -55,7 +55,7 @@ export function YouTubePlayer({ id, title }: { id: string; title: string }) {
                 href={videoWatch(id)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-4 inline-block rounded-full bg-[var(--grad-gold)] px-7 py-3 text-[0.72rem] font-bold uppercase tracking-[0.16em] text-[#1a1208]"
+                className="mt-4 inline-block rounded-full [background-image:var(--grad-gold)] px-7 py-3 text-[0.72rem] font-bold uppercase tracking-[0.16em] text-[#1a1208]"
               >
                 {t("video.watch")} ↗
               </a>
