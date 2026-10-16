@@ -36,7 +36,7 @@ interface Palette {
 const PALETTE: Record<"light" | "dark", Palette> = {
   light: {
     sky: asset("/img/steppe-pano-light.jpg"),
-    background: "#faf6ef",
+    background: "#0b1626",
     fog: "#f6efe2",
     fogRange: [30, 60],
     floor: "#cdbb9a",

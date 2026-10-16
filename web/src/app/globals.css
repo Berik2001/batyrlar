@@ -8,23 +8,24 @@
    Значения перенесены из статической версии (css/tokens.css).
    ========================================================================== */
 @theme {
-  --color-bg: #faf6ef;
-  --color-bg-2: #f3ebdd;
-  --color-surface: #fffdf9;
-  --color-surface-2: #f7f0e4;
-  --color-line: rgba(120, 86, 40, 0.14);
-  --color-line-strong: rgba(120, 86, 40, 0.32);
+  /* Основная палитра — тёмно-синяя, как на обложке */
+  --color-bg: #0b1626;
+  --color-bg-2: #0f1f33;
+  --color-surface: #13263c;
+  --color-surface-2: #182f49;
+  --color-line: rgba(242, 207, 133, 0.16);
+  --color-line-strong: rgba(242, 207, 133, 0.38);
 
-  --color-gold: #a2701d;
-  --color-gold-bright: #7c5210;
-  --color-gold-deep: #6b4510;
-  --color-bronze: #8a5a2b;
-  --color-ember: #b4541f;
-  --color-sky: #237a8a;
+  --color-gold: #d6aa5c;
+  --color-gold-bright: #f2cf85;
+  --color-gold-deep: #a8782f;
+  --color-bronze: #c08a4a;
+  --color-ember: #c8562a;
+  --color-sky: #5fb8c6;
 
-  --color-ink: #1e1811;
-  --color-muted: #5c5043;
-  --color-dim: #8c7f6d;
+  --color-ink: #f4ede1;
+  --color-muted: #c2cada;
+  --color-dim: #8d9bb0;
   --color-on-gold: #1a1208;
 
   --font-display: var(--font-cormorant), Georgia, "Times New Roman", serif;
@@ -40,49 +41,43 @@
   --radius-card: 24px;
 
   --ease-out-soft: cubic-bezier(0.16, 1, 0.3, 1);
-  --shadow-card: 0 1px 2px rgba(60, 38, 12, 0.05), 0 8px 24px -8px rgba(60, 38, 12, 0.12);
-  --shadow-lift: 0 2px 4px rgba(60, 38, 12, 0.06), 0 24px 48px -16px rgba(60, 38, 12, 0.24);
+  --shadow-card: 0 12px 32px -16px rgba(0, 0, 0, 0.55);
+  --shadow-lift: 0 24px 48px -16px rgba(0, 0, 0, 0.7);
 }
 
 /* Тёмная палитра переопределяет те же переменные, поэтому все утилиты
    (bg-surface, text-ink, border-line …) работают в обеих темах без dark:-дублей */
 .dark {
-  --color-bg: #0b0a09;
-  --color-bg-2: #13110e;
-  --color-surface: #1a1713;
-  --color-surface-2: #242019;
-  --color-line: rgba(214, 170, 92, 0.18);
-  --color-line-strong: rgba(214, 170, 92, 0.42);
-
-  --color-gold: #d6aa5c;
-  --color-gold-bright: #f2cf85;
-  --color-gold-deep: #a8782f;
-  --color-ember: #c8642a;
-  --color-sky: #5fb8c6;
+  --color-bg: #060d18;
+  --color-bg-2: #0a1424;
+  --color-surface: #0e1c2e;
+  --color-surface-2: #13263c;
+  --color-line: rgba(242, 207, 133, 0.14);
+  --color-line-strong: rgba(242, 207, 133, 0.34);
 
   --color-ink: #f4ede1;
-  --color-muted: #b3a893;
-  --color-dim: #8d8372;
+  --color-muted: #b7c0d1;
+  --color-dim: #7f8da3;
 
-  --shadow-card: 0 12px 32px -16px rgba(0, 0, 0, 0.6);
-  --shadow-lift: 0 24px 48px -16px rgba(0, 0, 0, 0.7);
+  --shadow-card: 0 12px 32px -16px rgba(0, 0, 0, 0.7);
+  --shadow-lift: 0 24px 48px -16px rgba(0, 0, 0, 0.8);
   color-scheme: dark;
 }
 
 :root {
   --header-h: 72px;
   /* Фон в rgb-компонентах — для полупрозрачных вуалей поверх сцены */
-  --bg-rgb: 250 246 239;
+  --bg-rgb: 11 22 38;
   /* Бумажная фактура поверх фона */
-  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .45 0 0 0 0 .32 0 0 0 0 .15 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .62 0 0 0 0 .72 0 0 0 0 .92 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   --grad-gold: linear-gradient(135deg, #f2cf85 0%, #d6aa5c 45%, #a8782f 100%);
-  --grad-gold-text: linear-gradient(180deg, #b8842f 0%, #8a5a2b 55%, #5e3b12 100%);
-  color-scheme: light;
+  --grad-gold-text: linear-gradient(180deg, #f6dda8 0%, #e5bd72 50%, #c3913c 100%);
+  color-scheme: dark;
 }
 
 .dark {
-  --bg-rgb: 11 10 9;
-  --grad-gold-text: linear-gradient(180deg, #f2cf85 0%, #d6aa5c 50%, #8a5a2b 100%);
+  --bg-rgb: 6 13 24;
+  --grad-gold-text: linear-gradient(180deg, #f6dda8 0%, #e5bd72 50%, #c3913c 100%);
 }
 
 @layer base {

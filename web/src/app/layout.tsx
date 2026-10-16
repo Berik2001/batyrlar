@@ -50,7 +50,7 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   // Сайт по умолчанию светлый независимо от настроек системы
-  themeColor: "#faf6ef",
+  themeColor: "#0b1626",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

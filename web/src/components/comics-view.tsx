@@ -102,7 +102,7 @@ export function ComicsView() {
                         sizes="(max-width: 768px) 100vw, 50vw"
                         className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
                       />
-                      <span className="absolute left-4 top-4 grid h-9 w-9 place-items-center rounded-full border border-[rgba(214,170,92,.7)] bg-[rgba(11,10,9,.7)] font-display text-lg text-[#f2cf85]">
+                      <span className="absolute left-4 top-4 grid h-9 w-9 place-items-center rounded-full border border-[rgba(214,170,92,.7)] bg-[rgba(7,14,24,.7)] font-display text-lg text-[#f2cf85]">
                         {panelIndex + 1}
                       </span>
                     </button>

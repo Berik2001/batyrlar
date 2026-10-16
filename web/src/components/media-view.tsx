@@ -285,7 +285,7 @@ export function MediaView({ videos }: { videos: Video[] }) {
               />
               {item.youtubeId && (
                 <span className="absolute inset-0 grid place-items-center">
-                  <span className="grid h-14 w-14 place-items-center rounded-full border border-[rgba(214,170,92,.6)] bg-[rgba(11,10,9,.55)] text-[#f2cf85] backdrop-blur-sm transition-transform duration-300 group-hover:scale-110">
+                  <span className="grid h-14 w-14 place-items-center rounded-full border border-[rgba(214,170,92,.6)] bg-[rgba(7,14,24,.55)] text-[#f2cf85] backdrop-blur-sm transition-transform duration-300 group-hover:scale-110">
                     <svg viewBox="0 0 24 24" className="ml-0.5 h-6 w-6" fill="currentColor" aria-hidden="true">
                       <path d="M8 5.5v13l11-6.5z" />
                     </svg>
