@@ -12,7 +12,7 @@ import { COMICS } from "@/data/comics";
 import { getBatyr } from "@/data/batyrs";
 import { useT } from "@/lib/use-t";
 import { KoshkarOrnament, PageHero, Reveal } from "@/components/ui";
-import { ComicBook } from "@/components/comic-book";
+import { ComicBook, preloadImage } from "@/components/comic-book";
 import { lockScroll, unlockScroll } from "@/components/providers";
 
 export function ComicsView() {
@@ -41,6 +41,7 @@ export function ComicsView() {
                   <button
                     type="button"
                     onClick={() => setOpen(i)}
+                    onPointerEnter={() => comic.panels.forEach((panel) => preloadImage(panel.src))}
                     aria-label={`${t("comics.open")}: ${pick(comic.title)}`}
                     className="group block w-full cursor-pointer [perspective:1400px]"
                   >

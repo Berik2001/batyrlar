@@ -33,6 +33,13 @@ type Flip = {
   destroy: () => void;
 };
 
+/** Скачать и раскодировать картинку заранее; ошибки не мешают открыть книгу */
+export function preloadImage(src: string): Promise<void> {
+  const img = new Image();
+  img.src = src;
+  return img.decode().catch(() => undefined);
+}
+
 /** Пропорции страницы — как у школьного учебника */
 const PAGE_W = 540;
 const PAGE_H = 720;
@@ -48,6 +55,7 @@ export function ComicBook({ comic, onClose }: { comic: Comic; onClose: () => voi
   const [page, setPage] = useState(0);
   const [total, setTotal] = useState(0);
   const [spread, setSpread] = useState(false);
+  const [loading, setLoading] = useState(true);
   const batyr = getBatyr(comic.batyr);
 
   // Обложка + титул + кадры (+ «Соңы» для чётности) + задняя обложка
@@ -60,8 +68,16 @@ export function ComicBook({ comic, onClose }: { comic: Comic; onClose: () => voi
     host.current.appendChild(block);
     const pages = [...source.current.children].map((el) => el.cloneNode(true) as HTMLElement);
 
-    import("page-flip").then(({ PageFlip }) => {
+    // Пока кадры не скачаны, страницы были бы пустыми рамками — ждём их
+    // (но не дольше 4 с: на медленной сети лучше показать книгу и догрузить)
+    const ready = Promise.race([
+      Promise.all(comic.panels.map((panel) => preloadImage(panel.src))),
+      new Promise((resolve) => setTimeout(resolve, 4000)),
+    ]);
+
+    Promise.all([import("page-flip"), ready]).then(([{ PageFlip }]) => {
       if (cancelled) return;
+      setLoading(false);
       const flip = new PageFlip(block, {
         width: PAGE_W,
         height: PAGE_H,
@@ -91,7 +107,7 @@ export function ComicBook({ comic, onClose }: { comic: Comic; onClose: () => voi
       book.current = null;
       block.remove();
     };
-  }, []);
+  }, [comic]);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -123,6 +139,13 @@ export function ComicBook({ comic, onClose }: { comic: Comic; onClose: () => voi
           {t("comics.close")} ✕
         </button>
       </div>
+
+      {loading && (
+        <p className="flex items-center gap-3 py-10 text-white/75">
+          <span className="h-5 w-5 animate-spin rounded-full border-2 border-white/25 border-t-[#f2cf85]" />
+          {t("video.loading")}
+        </p>
+      )}
 
       {/* Книга: ширина ограничена и экраном, и высотой (разворот 3:2, страница 3:4) */}
       <div
@@ -201,7 +224,7 @@ export function ComicBook({ comic, onClose }: { comic: Comic; onClose: () => voi
             <div key={panel.src} className={paper}>
               <div className="@container h-full">
                 <div className="flex h-full flex-col p-[6cqw]">
-                  <div className="relative aspect-[16/10] w-full shrink-0 overflow-hidden rounded-sm border-[3px] border-[#2a2117] shadow-[4px_4px_0_#2a2117]">
+                  <div className="relative aspect-[16/10] w-full shrink-0 overflow-hidden rounded-sm border-[3px] border-[#2a2117] bg-[linear-gradient(135deg,#e9dfcb,#d8c9ad)] shadow-[4px_4px_0_#2a2117]">
                     <img src={panel.src} alt="" className="absolute inset-0 h-full w-full object-cover" />
                   </div>
                   <p className="mt-[4.5cqw] font-display text-[4.5cqw] font-semibold leading-[1.22] first-letter:float-left first-letter:mr-[1.2cqw] first-letter:mt-[.6cqw] first-letter:text-[2.35em] first-letter:leading-[.8] first-letter:text-[#a3202a]">
