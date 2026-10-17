@@ -8,6 +8,8 @@
  * (или с аркой на странице «Тарих»).
  */
 export const VIDEOS = [
+  { id: "ZUUF5w5E9u4", title: "Қобыланды. Барлық бөлім", channel: "Balapan TV", duration: "1:11:34", related: "qobylandy" },
+  { id: "oiobZ7iEa8A", title: "Алпамыс батыр. 1-бөлім", channel: "KazStory", duration: "22:50", related: "alpamys" },
   { id: "AcFxGAXvpe4", title: "Ербол Қуанбек — «Қобыланды батыр» жыры. «Жеті қазына»", channel: "Khabar TV", duration: "6:40", related: "qobylandy" },
   { id: "WgVccR6lHBg", title: "Қобыланды батыр жыры. Орындаған Абдуррахман Естайұлы", channel: "Дәрібаевтар ансамблі", duration: "2:50:45", related: "qobylandy" },
   { id: "VkOUlQ6hCOo", title: "Қобыланды батыр жыры. 1-бөлім", channel: "Aba Kaz", duration: "2:30:00", related: "qobylandy" },

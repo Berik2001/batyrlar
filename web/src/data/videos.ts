@@ -16,11 +16,16 @@ export interface Video {
   duration?: string;
   /** id батыра или арки, к которым относится ролик */
   related?: string;
-  /** "zhyr" — исполнение жыра или чтение текста, такие записи слушают, а не смотрят */
-  kind?: "zhyr";
+  /**
+   * "zhyr" — исполнение жыра или чтение текста, такие записи слушают, а не смотрят;
+   * "cartoon" — мультфильм для детей, в списках идёт первым и с пометкой
+   */
+  kind?: "zhyr" | "cartoon";
 }
 
 export const CURATED_VIDEOS: Video[] = [
+  { id: "ZUUF5w5E9u4", title: "Қобыланды. Барлық бөлім", channel: "Balapan TV", duration: "1:11:34", kind: "cartoon", related: "qobylandy" },
+  { id: "oiobZ7iEa8A", title: "Алпамыс батыр. 1-бөлім", channel: "KazStory", duration: "22:50", kind: "cartoon", related: "alpamys" },
   { id: "AcFxGAXvpe4", title: "Ербол Қуанбек — «Қобыланды батыр» жыры. «Жеті қазына»", channel: "Khabar TV", duration: "6:40", kind: "zhyr", related: "qobylandy" },
   { id: "WgVccR6lHBg", title: "Қобыланды батыр жыры. Орындаған Абдуррахман Естайұлы", channel: "Дәрібаевтар ансамблі", duration: "2:50:45", kind: "zhyr", related: "qobylandy" },
   { id: "VkOUlQ6hCOo", title: "Қобыланды батыр жыры. 1-бөлім", channel: "Aba Kaz", duration: "2:30:00", kind: "zhyr", related: "qobylandy" },

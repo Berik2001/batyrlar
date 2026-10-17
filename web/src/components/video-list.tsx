@@ -44,6 +44,11 @@ export function VideoList({ videos }: { videos: Video[] }) {
                       <path d="M8 5v14l11-7z" />
                     </svg>
                   </span>
+                  {video.kind === "cartoon" && (
+                    <span className="absolute left-3 top-3 rounded-full [background-image:linear-gradient(180deg,#ffd978,#f0b63f_55%,#d2902a)] px-3 py-1 text-[0.7rem] font-bold uppercase tracking-[0.12em] text-[#2a1b05] shadow-[0_6px_16px_-6px_rgba(0,0,0,.8)]">
+                      {t("video.cartoon")}
+                    </span>
+                  )}
                   {video.duration && (
                     <span className="absolute bottom-3 right-3 rounded-md bg-[rgba(7,14,24,.8)] px-2 py-0.5 text-[0.72rem] font-semibold tabular-nums text-[#f6efe2]">
                       {video.duration}
